@@ -14,14 +14,14 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": "./src/",
     "paths": {
-      "@api*": ["api/*"],
-      "@assets*": ["assets/*"],
-      "@pages*": ["pages/*"],
-      "@service*": ["service/*"],
-      "@store*": ["store/*"],
-      "@types*": ["types/*"],
+      "@api/*": ["api/*"],
+      "@assets/*": ["assets/*"],
+      "@pages/*": ["pages/*"],
+      "@service/*": ["service/*"],
+      "@store/*": ["store/*"],
+      "@src/types/*": ["types/*"],
       "@utils/*": ["utils/*"]
     }
   },
