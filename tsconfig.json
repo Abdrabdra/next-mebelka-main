@@ -18,6 +18,8 @@
     "paths": {
       "@api/*": ["api/*"],
       "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"],
       "@service/*": ["service/*"],
       "@store/*": ["store/*"],
