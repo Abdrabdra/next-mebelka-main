@@ -1,4 +1,3 @@
-
 import { ThemeOptions } from "@mui/material";
 
 function pxToRem(value: any) {
@@ -20,7 +19,7 @@ function responsiveFontSizes({ sm, md, lg }: any) {
 }
 
 const FONT_PRIMARY = [
-  "Gilroy",
+  "SF Pro Display",
   "-apple-system",
   "BlinkMacSystemFont",
   '"Segoe UI"',

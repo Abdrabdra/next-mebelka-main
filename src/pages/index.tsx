@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
-      <div>Mebelka</div>
+      <Link href="/auth/login">Log In</Link>
     </>
   );
 }
