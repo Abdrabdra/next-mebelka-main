@@ -1,9 +1,11 @@
-import Link from "next/link";
+import Home from "@components/screens/Home";
+import { MainLayout } from "@layouts/MainLayout";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <Link href="/auth/login">Log In</Link>
-    </>
+    <MainLayout>
+      <Home />
+    </MainLayout>
   );
 }

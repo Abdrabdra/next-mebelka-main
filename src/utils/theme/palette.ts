@@ -52,7 +52,7 @@ const PRIMARY = {
 };
 const SECONDARY = {
   light: "#FFBB6A",
-  main: "#111111",
+  main: "#F2F4F6",
   dark: "#B74B03",
   0: "#000",
   100: "#111111",
@@ -60,7 +60,8 @@ const SECONDARY = {
   300: "#333333",
   500: "#555555",
   600: "#F6F6F6", // AuthPage, MainInput -> backgroundColor
-  900: "#999999",
+  700: "#7D7D7D",
+  900: "#9E9E9E",
 };
 const INFO = {
   light: "#66B5FF",
@@ -72,7 +73,7 @@ const SUCCESS = {
   light: "#8BF27F",
   main: "#42C747",
   dark: "#169A2E",
-  100: "#B5FBDD", // Profile -> ProfileSettings BackGroundColor
+  100: "#B5FBDD",
 };
 const WARNING = {
   light: "#FFE16A",
@@ -83,18 +84,18 @@ const ERROR = {
   light: "#FF866A",
   main: "#ED2F2F",
   dark: "#B70B03",
-  100: "#FFDFDC", // Profile -> ProfileStatistics BackGroundColor
+  100: "#FFDFDC",
 };
 const GREY = {
-  0: "#F4F4F4", // backgroundColor
-  100: "#C1C1C1", // text color
-  200: "#F0F0F0", // ChatOne, Input Background
+  0: "#F4F4F4",
+  100: "#C1C1C1",
+  200: "#F0F0F0",
   300: "#E8E8E6",
   400: "#D5D4D0",
-  500: "#E5E7EB", // PostPage -> PostStepperHead background
+  500: "#A5A5A5",
   600: "#817E77",
   700: "#5B5954",
-  800: "#878787", // navbar Color
+  800: "#878787",
   900: "#1B1C13",
 };
 
@@ -113,8 +114,8 @@ const palette = {
   light: {
     ...COMMON,
     mode: "light",
-    text: { primary: "#000" },
-    background: { default: GREY[0] },
+    text: { primary: COMMON.common.black },
+    background: { default: COMMON.common.white },
   },
 } as const;
 
