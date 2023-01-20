@@ -3,7 +3,10 @@ import ThemeProvider from "@utils/theme";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
 import "@assets/fonts/stylesheet.scss";
+
+import "@components/screens/Home/Banner/BannerSlider/BannerSlider.style.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

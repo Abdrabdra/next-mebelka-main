@@ -1,5 +1,20 @@
+import { Container, Stack } from "@mui/material";
+import Banner from "./Banner";
+import Categories from "./Categories";
+import ProductList from "./ProductList";
+import SearchBar from "./SearchBar";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <Container>
+      <Stack spacing={3}>
+        <SearchBar />
+        <Banner bannerTitle="Скидки и предложения" />
+        <Categories />
+        <ProductList productTitle="Стулья" />
+      </Stack>
+    </Container>
+  );
 };
 
 export default Home;

@@ -9,7 +9,7 @@ interface Props {
 
 const MainLayout: FC<Props> = ({ children }) => {
   return (
-    <Box sx={{ paddingTop: "80px" }}>
+    <Box sx={{ paddingTop: "80px", paddingBottom: "84px" }}>
       <TopDrawer />
       {children}
       <BottomDrawer />

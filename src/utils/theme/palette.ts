@@ -60,14 +60,15 @@ const SECONDARY = {
   300: "#333333",
   500: "#555555",
   600: "#F6F6F6", // AuthPage, MainInput -> backgroundColor
-  700: "#7D7D7D",
+  700: "#B7B7B7", //used
   900: "#9E9E9E",
 };
-const INFO = {
+export const INFO = {
   light: "#66B5FF",
   main: "#1F90F8",
   dark: "#2073C0",
   200: "#262D35",
+  400: "#A4A4A4", //used
 };
 const SUCCESS = {
   light: "#8BF27F",
@@ -82,17 +83,17 @@ const WARNING = {
 };
 const ERROR = {
   light: "#FF866A",
-  main: "#ED2F2F",
+  main: "#FF0000", //used
   dark: "#B70B03",
   100: "#FFDFDC",
 };
 const GREY = {
-  0: "#F4F4F4",
+  0: "#D0D0D0",
   100: "#C1C1C1",
   200: "#F0F0F0",
   300: "#E8E8E6",
   400: "#D5D4D0",
-  500: "#A5A5A5",
+  500: "#A5A5A5", //used
   600: "#817E77",
   700: "#5B5954",
   800: "#878787",
