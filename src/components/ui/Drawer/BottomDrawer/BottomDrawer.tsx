@@ -6,8 +6,6 @@ import { routes } from "./links.const";
 const BottomDrawer = () => {
   const router = useRouter();
 
-  console.log(router);
-
   const handleClick = (value: string) => {
     router.push(value);
   };
@@ -15,6 +13,7 @@ const BottomDrawer = () => {
   return (
     <Stack
       sx={{
+        zIndex: 99999,
         width: "100%",
         backgroundColor: "common.white",
         borderRadius: "20px 20px 0 0",
@@ -32,7 +31,7 @@ const BottomDrawer = () => {
           sx={{ height: "68px" }}
         >
           {routes.map((row) => (
-            <Stack>
+            <Stack key={row.id}>
               <IconButton key={row.id} onClick={() => handleClick(row.route)}>
                 <Icon
                   component={

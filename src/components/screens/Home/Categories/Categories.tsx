@@ -45,6 +45,7 @@ const Categories = () => {
     <Stack direction={"row"} sx={{ flexWrap: "wrap", gap: "16px" }}>
       {categories.map((row) => (
         <Stack
+          key={row.id}
           spacing={1}
           sx={{
             flex: "1 1 calc(33.333% - 16px * 2 / 3)",
