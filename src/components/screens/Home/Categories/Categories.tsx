@@ -62,7 +62,7 @@ const Categories = () => {
               justifyContent: "center",
             }}
           >
-            <Icon component={row.icon} color="primary" />
+            <Icon fontSize="large" component={row.icon} color="primary" />
           </Button>
           <Typography
             sx={{

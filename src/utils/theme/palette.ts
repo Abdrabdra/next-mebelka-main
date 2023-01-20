@@ -69,6 +69,7 @@ export const INFO = {
   dark: "#2073C0",
   200: "#262D35",
   400: "#A4A4A4", //used
+  900: "#A9A9A9", //used
 };
 const SUCCESS = {
   light: "#8BF27F",

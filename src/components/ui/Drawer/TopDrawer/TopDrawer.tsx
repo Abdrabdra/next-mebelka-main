@@ -5,8 +5,16 @@ import NotesIcon from "@mui/icons-material/Notes";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import DrawerMenu from "./DrawerMenu";
+import { useState } from "react";
 
 const TopDrawer = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = (value: boolean) => {
+    setOpen(value);
+  };
+
   return (
     <Stack
       sx={{
@@ -29,6 +37,7 @@ const TopDrawer = () => {
         >
           <Stack>
             <Button
+              onClick={() => handleOpen(true)}
               variant="text"
               startIcon={<NotesIcon />}
               sx={{
@@ -39,8 +48,9 @@ const TopDrawer = () => {
                 width: "77px",
               }}
             >
-              Menu
+              Меню
             </Button>
+            <DrawerMenu opened={open} handleOpen={handleOpen} />
           </Stack>
 
           <Stack direction="row">
