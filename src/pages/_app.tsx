@@ -6,6 +6,10 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import "@assets/fonts/stylesheet.scss";
 
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import "@components/screens/Home/Banner/BannerSlider/BannerSlider.style.scss";
 
 export default function App({ Component, pageProps }: AppProps) {

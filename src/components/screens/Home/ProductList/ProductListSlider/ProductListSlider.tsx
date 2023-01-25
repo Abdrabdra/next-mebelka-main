@@ -5,19 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import StarIcon from "@mui/icons-material/Star";
 import { alpha } from "@mui/material/styles";
 import { INFO } from "@utils/theme/palette";
+import { useRouter } from "next/router";
 
 const ProductListSlider = () => {
-  const ref = useRef();
+  const ref = useRef<any>();
+  const router = useRouter();
 
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
-    // @ts-ignore
     setWidth(ref.current.offsetWidth);
   }, []);
 
   const updateWidth = () => {
-    // @ts-ignore
     setWidth(ref.current.offsetWidth);
   };
 
@@ -25,14 +25,20 @@ const ProductListSlider = () => {
     window.addEventListener("resize", updateWidth);
   }, []);
 
+  const handleClick = (value: number) => {
+    router.push(`/announce/${value}`);
+  };
+
   return (
     <Box ref={ref}>
       <Swiper className={"homeSlider"} slidesPerView={width / 207}>
-        {[1, 2, 3, 4, 5].map((banner, index) => (
-          <SwiperSlide key={index}>
+        {[1, 2, 3, 4, 5].map((banner) => (
+          <SwiperSlide key={banner}>
             <Stack
+              onClick={() => handleClick(banner)}
               spacing={1.5}
               sx={{
+                cursor: "pointer",
                 width: "194px",
                 backgroundColor: "secondary.main",
                 borderRadius: "20px",

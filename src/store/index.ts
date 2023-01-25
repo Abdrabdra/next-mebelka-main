@@ -15,6 +15,7 @@ import storage from "redux-persist/lib/storage";
 
 //reducer
 import authReducer from "./reducers/auth/auth.slice";
+import basketSlice from "./reducers/basket/basket.slice";
 import filterReducer from "./reducers/filter/filter.slice";
 
 //rtk
@@ -34,6 +35,7 @@ const AuthPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(AuthPersistConfig, authReducer),
   filter: filterReducer,
+  basket: basketSlice,
 
   [announcementApi.reducerPath]: announcementApi.reducer,
 });
