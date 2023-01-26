@@ -21,7 +21,7 @@ const basketSlice = createSlice({
       state.items = [...state.items, payload];
     },
     deleteBasketItem: (state, { payload }) => {
-      state.items = state.items.filter((row) => row !== payload);
+      state.items = state.items.filter((row) => row.id != payload);
     },
 
     setBasketReset: (state) => {

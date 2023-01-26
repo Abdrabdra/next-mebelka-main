@@ -1,13 +1,18 @@
 import { MainButton } from "@components/ui/Buttons";
 import { Stack } from "@mui/material";
 
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { updateBasket } from "@store/reducers/basket/basket.slice";
+import {
+  deleteBasketItem,
+  updateBasket,
+} from "@store/reducers/basket/basket.slice";
 import { useTypedSelector } from "@store/index";
 import { useEffect, useState } from "react";
 import { number } from "yup";
+
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 
 const FooterBasket = () => {
   const router = useRouter();
@@ -21,11 +26,17 @@ const FooterBasket = () => {
   useEffect(() => {
     if (basketItems.filter((row) => row.id == Number(id)).length > 0) {
       setInBasket(true);
+    } else {
+      setInBasket(false);
     }
   }, [basketItems]);
 
   const handleAddToBasket = () => {
     id && dispatch(updateBasket({ id: id }));
+  };
+
+  const handleDeleteFromBasket = () => {
+    id && dispatch(deleteBasketItem(Number(id)));
   };
 
   const handleNavigate = () => {
@@ -50,8 +61,9 @@ const FooterBasket = () => {
     >
       {inBasket ? (
         <MainButton
+          onClick={handleDeleteFromBasket}
           bgcolor="secondary.main"
-          startIcon={<AddRoundedIcon />}
+          startIcon={<ThumbUpOutlinedIcon />}
           sx={{
             fontWeight: 600,
             fontSize: "14px",
