@@ -61,6 +61,7 @@ const SECONDARY = {
   500: "#5A5A5A", //used
   600: "#F6F6F6", // AuthPage, MainInput -> backgroundColor
   700: "#B7B7B7", //used
+  800: "#8E8E8E", //used
   900: "#9E9E9E",
 };
 export const INFO = {
