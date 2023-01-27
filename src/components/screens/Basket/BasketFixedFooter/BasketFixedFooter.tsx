@@ -1,9 +1,12 @@
 import { MainButton } from "@components/ui/Buttons";
 import { Container, Stack, Typography } from "@mui/material";
+import { useTypedSelector } from "@store/index";
 import numberWithSpaces from "@utils/numberWithSpaces";
 
 const BasketFixedFooter = () => {
-  return (
+  const basketItems = useTypedSelector((state) => state.basket.items);
+
+  return basketItems.length === 0 ? null : (
     <Stack
       sx={{
         width: "100%",

@@ -8,9 +8,12 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 import { useState } from "react";
 import numberWithSpaces from "@utils/numberWithSpaces";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { deleteBasketItem } from "@store/reducers/basket/basket.slice";
 
 const BasketList = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const basketItems = useTypedSelector((state) => state.basket.items);
 
   const [state, setState] = useState(1);
@@ -31,117 +34,133 @@ const BasketList = () => {
     router.push(`/announce/${id}`);
   };
 
-  const handleDelete = () => {
-    return null;
+  const handleDelete = (id: number) => {
+    dispatch(deleteBasketItem(id));
   };
 
   return (
     <Container>
       <Stack spacing={2}>
-        {basketItems.map((row) => (
+        {basketItems.length === 0 ? (
           <Stack
-            spacing={2}
-            direction="row"
-            alignItems="center"
-            sx={{
-              height: "124px",
-              backgroundColor: "secondary.main",
-              padding: "8px",
-              borderRadius: "12px",
-            }}
+            justifyContent={"center"}
+            alignItems={"center"}
+            sx={{ height: "80vh", fontSize: "16px" }}
           >
-            <Box
+            Корзина Пуста
+          </Stack>
+        ) : (
+          basketItems.map((row) => (
+            <Stack
+              spacing={2}
+              direction="row"
+              alignItems="center"
               sx={{
-                backgroundColor: "primary.main",
+                height: "124px",
+                backgroundColor: "secondary.main",
+                padding: "8px",
                 borderRadius: "12px",
-                width: "108px",
-                height: "108px",
               }}
-            />
+            >
+              <Box
+                sx={{
+                  backgroundColor: "primary.main",
+                  borderRadius: "12px",
+                  width: "108px",
+                  height: "108px",
+                }}
+              />
 
-            <Stack spacing={1.5} sx={{ flex: 1 }}>
-              <Stack spacing={1}>
-                <Stack direction="row" justifyContent={"space-between"}>
-                  <Typography
-                    onClick={() => handleClick(row.id)}
-                    sx={{
-                      fontSize: "18px",
-                      letterSpacing: "1px",
-                      color: "primary.main",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Диван “Lanister”
-                  </Typography>
+              <Stack spacing={1.5} sx={{ flex: 1 }}>
+                <Stack spacing={1}>
+                  <Stack direction="row" justifyContent={"space-between"}>
+                    <Typography
+                      onClick={() => handleClick(row.id)}
+                      sx={{
+                        fontSize: "18px",
+                        letterSpacing: "1px",
+                        color: "primary.main",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Диван “Lanister”
+                    </Typography>
 
-                  <IconButton size="small" onClick={handleDelete}>
-                    <DeleteOutlinedIcon fontSize="small" />
-                  </IconButton>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleDelete(row.id)}
+                    >
+                      <DeleteOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </Stack>
+
+                  <Stack spacing={1} direction="row">
+                    <Box
+                      sx={{
+                        width: 19,
+                        height: 19,
+                        borderRadius: "50%",
+                        backgroundColor: "common.black",
+                      }}
+                    />
+                    <Typography
+                      sx={{
+                        fontWeight: 500,
+                        color: "primary.main",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      Черный
+                    </Typography>
+                  </Stack>
                 </Stack>
 
-                <Stack spacing={1} direction="row">
-                  <Box
-                    sx={{
-                      width: 19,
-                      height: 19,
-                      borderRadius: "50%",
-                      backgroundColor: "common.black",
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontWeight: 500,
-                      color: "primary.main",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    Черный
-                  </Typography>
-                </Stack>
-              </Stack>
-
-              <Stack
-                direction="row"
-                justifyContent={"space-between"}
-                sx={{ flex: 1 }}
-              >
                 <Stack
                   direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  sx={{
-                    backgroundColor: "common.white",
-                    borderRadius: "12px",
-                    height: "31px",
-                    width: "110px",
-                    fontSize: "16px",
-                    fontWeight: 600,
-                  }}
+                  justifyContent={"space-between"}
+                  sx={{ flex: 1 }}
                 >
-                  <IconButton onClick={handleDecrement} disabled={state === 1}>
-                    <ArrowBackIosNewRoundedIcon fontSize="small" />
-                  </IconButton>
-                  {state}
-                  <IconButton onClick={handleIncrement}>
-                    <ArrowForwardIosRoundedIcon fontSize="small" />
-                  </IconButton>
-                </Stack>
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    sx={{
+                      backgroundColor: "common.white",
+                      borderRadius: "12px",
+                      height: "31px",
+                      width: "110px",
+                      fontSize: "16px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <IconButton
+                      onClick={handleDecrement}
+                      disabled={state === 1}
+                    >
+                      <ArrowBackIosNewRoundedIcon fontSize="small" />
+                    </IconButton>
+                    {state}
+                    <IconButton onClick={handleIncrement}>
+                      <ArrowForwardIosRoundedIcon fontSize="small" />
+                    </IconButton>
+                  </Stack>
 
-                <Typography
-                  sx={{
-                    alignSelf: "end",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    letterSpacing: "1px",
-                    color: "primary.main",
-                  }}
-                >
-                  {numberWithSpaces(450000)}тг
-                </Typography>
+                  <Typography
+                    sx={{
+                      alignSelf: "end",
+                      fontWeight: 700,
+                      fontSize: "16px",
+                      letterSpacing: "1px",
+                      color: "primary.main",
+                    }}
+                  >
+                    {numberWithSpaces(450000)}тг
+                  </Typography>
+                </Stack>
               </Stack>
             </Stack>
-          </Stack>
-        ))}
+          ))
+        )}
       </Stack>
     </Container>
   );
