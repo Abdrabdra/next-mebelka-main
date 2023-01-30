@@ -1,11 +1,44 @@
-import { Typography } from "@mui/material";
+import { Box, Container, IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/material";
 import { useRouter } from "next/router";
+
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 
 const TopDrawerSecondary = () => {
   const router = useRouter();
 
-  return (
+  const handleNavigate = () => {
+    router.back();
+  };
+
+  return router.pathname === "/basket/confirm/address" ||
+    router.pathname === "/basket/confirm/payment" ||
+    router.pathname === "/basket/confirm/total" ? (
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      sx={{ height: "64px", position: "relative" }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          left: 0,
+        }}
+      >
+        <IconButton onClick={handleNavigate} sx={{ color: "common.black" }}>
+          <ArrowBackIosRoundedIcon />
+        </IconButton>
+      </Box>
+      <Typography sx={{ fontSize: "16px", letterSpacing: "1px" }}>
+        {router.pathname === "/basket/confirm/address"
+          ? "Данные о местоположении"
+          : router.pathname === "/basket/confirm/payment"
+          ? "Способ оплаты"
+          : "Итого к оплате"}
+      </Typography>
+    </Stack>
+  ) : (
     <Stack
       direction="row"
       justifyContent="center"

@@ -56,13 +56,13 @@ const SECONDARY = {
   dark: "#B74B03",
   0: "#000",
   100: "#111111",
-  200: "#222222",
+  200: "#232323", //used
   300: "#333333", //used
   500: "#5A5A5A", //used
   600: "#F6F6F6", // AuthPage, MainInput -> backgroundColor
   700: "#B7B7B7", //used
   800: "#8E8E8E", //used
-  900: "#9E9E9E",
+  900: "#969696", //used
 };
 export const INFO = {
   light: "#66B5FF",
@@ -98,8 +98,8 @@ const GREY = {
   500: "#A5A5A5", //used
   600: "#817E77",
   700: "#7B7B7B", //used
-  800: "#878787",
-  900: "#1B1C13",
+  800: "#878787", //used
+  900: "#999999", //used
 };
 
 const COMMON = {

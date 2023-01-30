@@ -14,11 +14,11 @@ const ProductListSlider = () => {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
-    setWidth(ref.current.offsetWidth);
+    setWidth(ref?.current?.offsetWidth);
   }, []);
 
   const updateWidth = () => {
-    setWidth(ref.current.offsetWidth);
+    setWidth(ref?.current?.offsetWidth);
   };
 
   useEffect(() => {

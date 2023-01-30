@@ -2,9 +2,15 @@ import { MainButton } from "@components/ui/Buttons";
 import { Container, Stack, Typography } from "@mui/material";
 import { useTypedSelector } from "@store/index";
 import numberWithSpaces from "@utils/numberWithSpaces";
+import { useRouter } from "next/router";
 
 const BasketFixedFooter = () => {
+  const router = useRouter();
   const basketItems = useTypedSelector((state) => state.basket.items);
+
+  const handleNavigate = () => {
+    router.push("/basket/confirm/address");
+  };
 
   return basketItems.length === 0 ? null : (
     <Stack
@@ -33,7 +39,12 @@ const BasketFixedFooter = () => {
               {numberWithSpaces(902160)}KZT
             </Typography>
           </Stack>
-          <MainButton bgcolor="secondary.300" fsize="14px" sx={{ flex: 0.8 }}>
+          <MainButton
+            onClick={handleNavigate}
+            bgcolor="secondary.300"
+            fsize="14px"
+            sx={{ flex: 0.8 }}
+          >
             Оформить
           </MainButton>
         </Stack>

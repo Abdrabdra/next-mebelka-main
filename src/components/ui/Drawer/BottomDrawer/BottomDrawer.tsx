@@ -10,7 +10,11 @@ const BottomDrawer = () => {
     router.push(value);
   };
 
-  return (
+  return router.pathname === "/" ||
+    router.pathname === "/search" ||
+    router.pathname === "/orders" ||
+    router.pathname === "/basket" ||
+    router.pathname === "/profile" ? (
     <Stack
       sx={{
         zIndex: 99999,
@@ -64,7 +68,7 @@ const BottomDrawer = () => {
         </Stack>
       </Container>
     </Stack>
-  );
+  ) : null;
 };
 
 export default BottomDrawer;
