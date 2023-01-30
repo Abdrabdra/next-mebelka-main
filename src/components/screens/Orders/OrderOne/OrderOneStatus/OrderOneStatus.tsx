@@ -1,7 +1,9 @@
-import { Stack, Typography } from "@mui/material";
+import { Icon, Stack, Typography } from "@mui/material";
+import { FC, useState } from "react";
 
 import Inventory2RoundedIcon from "@mui/icons-material/Inventory2Rounded";
-import { FC, useState } from "react";
+import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
+import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
 
 const data: 0 | 1 | 2 = 0;
 
@@ -44,53 +46,63 @@ interface StatusBoxesProps {
   status: number;
 }
 
+const boxes = [
+  {
+    id: 0,
+    icon: Inventory2RoundedIcon,
+  },
+  {
+    id: 1,
+    icon: LocalShippingRoundedIcon,
+  },
+  {
+    id: 2,
+    icon: InventoryRoundedIcon,
+  },
+];
+
 const StatusBoxes: FC<StatusBoxesProps> = ({ status }) => {
   return (
-    <Stack direction="row" justifyContent="space-between">
-      <Stack
-        justifyContent={"center"}
-        alignItems="center"
-        sx={{
-          width: "72px",
-          height: "72px",
-          borderRadius: "50%",
-          backgroundColor: status === 0 ? "primary.main" : "secondary.main",
-        }}
-      >
-        <Inventory2RoundedIcon
-          sx={{ color: status === 0 ? "common.white" : "primary.main" }}
-        />
-      </Stack>
+    <Stack direction="row">
+      {boxes.map((row) => (
+        <Stack
+          alignItems="center"
+          direction="row"
+          sx={{
+            flex: row.id === 2 ? 0 : 1,
+            whiteSpace: "nowrap",
+            overflow: row.id === 2 ? "initial" : "hidden",
 
-      <Stack
-        justifyContent={"center"}
-        alignItems="center"
-        sx={{
-          width: "72px",
-          height: "72px",
-          borderRadius: "50%",
-          backgroundColor: status === 1 ? "primary.main" : "secondary.main",
-        }}
-      >
-        <Inventory2RoundedIcon
-          sx={{ color: status === 1 ? "common.white" : "primary.main" }}
-        />
-      </Stack>
-
-      <Stack
-        justifyContent={"center"}
-        alignItems="center"
-        sx={{
-          width: "72px",
-          height: "72px",
-          borderRadius: "50%",
-          backgroundColor: status === 2 ? "primary.main" : "secondary.main",
-        }}
-      >
-        <Inventory2RoundedIcon
-          sx={{ color: status === 2 ? "common.white" : "primary.main" }}
-        />
-      </Stack>
+            "&:after": {
+              content:
+                row.id === 2
+                  ? `""`
+                  : `"--------------------------------------------------------------------------------------------------------------------------------"`,
+            },
+          }}
+        >
+          <Stack
+            key={row.id}
+            justifyContent={"center"}
+            alignItems="center"
+            sx={{
+              minWidth: "72px",
+              width: "72px",
+              height: "72px",
+              borderRadius: "50%",
+              backgroundColor:
+                status === row.id ? "primary.main" : "secondary.main",
+            }}
+          >
+            <Icon
+              component={row.icon}
+              sx={{
+                color: status === row.id ? "common.white" : "primary.main",
+              }}
+            />
+          </Stack>
+        </Stack>
+      ))}
     </Stack>
   );
 };
