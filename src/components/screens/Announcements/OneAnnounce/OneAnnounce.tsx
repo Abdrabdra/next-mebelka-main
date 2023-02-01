@@ -1,4 +1,5 @@
 import { Container, Stack } from "@mui/material";
+import Image from "next/image";
 import AnnounceAmount from "./AnnounceAmount";
 import AnnounceColors from "./AnnounceColors";
 import AnnounceDescription from "./AnnounceDescription";
@@ -6,12 +7,18 @@ import AnnounceInfo from "./AnnounceInfo";
 import AnnounceRecomendations from "./AnnounceRecomendations";
 import AnnounceTabs from "./AnnounceTabs";
 
+import mockPicture from "@assets/img/krovat_Olimpia.png";
+
 const OneAnnounce = () => {
   return (
     <Stack>
-      <Stack
-        sx={{ height: "350px", backgroundColor: "secondary.main" }}
-      ></Stack>
+      <Stack sx={{ height: "350px", backgroundColor: "secondary.main" }}>
+        <Image
+          src={mockPicture}
+          style={{ width: "100%", height: "350px" }}
+          alt={"Product"}
+        />
+      </Stack>
 
       <Stack
         sx={{

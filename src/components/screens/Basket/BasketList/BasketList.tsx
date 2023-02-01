@@ -10,6 +10,9 @@ import numberWithSpaces from "@utils/numberWithSpaces";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { deleteBasketItem } from "@store/reducers/basket/basket.slice";
+import Image from "next/image";
+
+import mockPicture from "@assets/img/krovat_Olimpia.png";
 
 const BasketList = () => {
   const router = useRouter();
@@ -69,7 +72,20 @@ const BasketList = () => {
                   width: "108px",
                   height: "108px",
                 }}
-              />
+              >
+                <Image
+                  src={mockPicture}
+                  alt="Picture of the author"
+                  style={{
+                    width: "100%",
+                    height: "108px",
+                    borderRadius: "12px",
+                    backgroundRepeat: "no-repeat",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+              </Box>
 
               <Stack spacing={1.5} sx={{ flex: 1 }}>
                 <Stack spacing={1}>

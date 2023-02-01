@@ -1,6 +1,9 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import numberWithSpaces from "@utils/numberWithSpaces";
+import Image from "next/image";
 import { useRouter } from "next/router";
+
+import mockPicture from "@assets/img/krovat_Olimpia.png";
 
 const OrderOneBox = () => {
   const router = useRouter();
@@ -27,7 +30,20 @@ const OrderOneBox = () => {
           borderRadius: "12px",
           backgroundColor: "primary.main",
         }}
-      />
+      >
+        <Image
+          src={mockPicture}
+          alt="Picture of the author"
+          style={{
+            width: "100%",
+            height: "108px",
+            borderRadius: "12px",
+            backgroundRepeat: "no-repeat",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+      </Box>
 
       <Stack spacing={1.5} sx={{ flex: 1 }}>
         <Stack spacing={1}>

@@ -4,6 +4,9 @@ import { Box, Stack } from "@mui/material";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import { useRouter } from "next/router";
 
+import mockPicture from "@assets/img/krovat_Olimpia.png";
+import Image from "next/image";
+
 const data = [
   {
     id: 0,
@@ -49,7 +52,20 @@ const OrdersList = () => {
               borderRadius: "12px",
               backgroundColor: "primary.main",
             }}
-          />
+          >
+            <Image
+              src={mockPicture}
+              alt="Picture of the author"
+              style={{
+                width: "100%",
+                height: "108px",
+                borderRadius: "12px",
+                backgroundRepeat: "no-repeat",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          </Box>
 
           <Stack spacing={1.5} sx={{ flex: 1 }}>
             <Stack spacing={1}>

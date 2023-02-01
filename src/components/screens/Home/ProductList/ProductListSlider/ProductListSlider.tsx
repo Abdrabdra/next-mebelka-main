@@ -1,11 +1,14 @@
 import { Box, Divider, Icon, Stack, Typography } from "@mui/material";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 import StarIcon from "@mui/icons-material/Star";
 import { alpha } from "@mui/material/styles";
 import { INFO } from "@utils/theme/palette";
 import { useRouter } from "next/router";
+
+import mockPicture from "@assets/img/krovat_Olimpia.png";
 
 const ProductListSlider = () => {
   const ref = useRef<any>();
@@ -45,12 +48,16 @@ const ProductListSlider = () => {
                 padding: "12px",
               }}
             >
-              <Box
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: "12px",
-                  height: "116px",
+              <Image
+                src={mockPicture}
+                alt="Picture of the author"
+                style={{
                   width: "100%",
+                  height: "116px",
+                  borderRadius: "12px",
+                  backgroundRepeat: "no-repeat",
+                  objectFit: "cover",
+                  objectPosition: "center",
                 }}
               />
 
