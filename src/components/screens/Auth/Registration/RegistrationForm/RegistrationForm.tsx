@@ -5,18 +5,18 @@ import { CircularProgress, Stack, Typography } from "@mui/material";
 
 import { ActionsEnum } from "@store/enum";
 import { AppDispatch, RootState, useTypedSelector } from "@store/index";
-import { login } from "@store/reducers/auth/auth.action";
+import { login, registration } from "@store/reducers/auth/auth.action";
 
-import { LoginSchema } from "./LoginForm.schema";
+import { RegistrationSchema } from "./RegistrationForm.schema";
 import { MainButton } from "@components/ui/Buttons";
 import { useRouter } from "next/router";
 import { MainInput } from "@components/ui/Inputs";
 import AbsoluteBox from "@components/ui/AbsoluteBox";
 import { setAuth } from "@store/reducers/auth/auth.slice";
 
-const LoginForm = () => {
+const RegistrationForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { status } = useTypedSelector((state: RootState) => state.auth);
+  const { status } = useTypedSelector((state) => state.auth);
   const router = useRouter();
 
   const formik = useFormik({
@@ -25,9 +25,9 @@ const LoginForm = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(login(values));
+      dispatch(registration(values));
     },
-    validationSchema: LoginSchema,
+    validationSchema: RegistrationSchema,
   });
 
   const { values, errors, handleChange, handleSubmit } = formik;
@@ -39,7 +39,7 @@ const LoginForm = () => {
   }, []);
 
   const handleClick = () => {
-    router.push(`/auth/registration`);
+    router.push(`/auth/login`);
   };
 
   return (
@@ -93,18 +93,9 @@ const LoginForm = () => {
                 textAlign: "center",
               }}
             >
-              У вас еще нет аккаунта?
+              У вас уже есть аккаунт?
             </Typography>
             <Stack direction="row" spacing={1} justifyContent="center">
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  color: "secondary.900",
-                  textAlign: "center",
-                }}
-              >
-                Можете
-              </Typography>
               <Typography
                 onClick={handleClick}
                 sx={{
@@ -113,7 +104,7 @@ const LoginForm = () => {
                   fontWeight: 500,
                 }}
               >
-                зарегистрироваться
+                Войти
               </Typography>
             </Stack>
           </Stack>
@@ -129,7 +120,7 @@ const LoginForm = () => {
               type="submit"
               sx={{ maxWidth: "375px" }}
             >
-              Войти
+              Зарегистрироваться
             </MainButton>
           </AbsoluteBox>
         </Stack>
@@ -138,4 +129,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;

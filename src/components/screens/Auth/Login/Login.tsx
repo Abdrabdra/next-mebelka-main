@@ -1,7 +1,19 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
+import { useTypedSelector } from "@store/index";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
+  const { isAuth } = useTypedSelector((state) => state.auth);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuth) {
+      router.push("/");
+    }
+  }, [isAuth]);
+
   return (
     <Stack>
       <Container>

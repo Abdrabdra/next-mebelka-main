@@ -3,12 +3,22 @@ import { FC } from "react";
 import ContentCategories from "./ContentCategories";
 import ContentHeader from "./ContentHeader";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { useDispatch } from "react-redux";
+import { setAuth } from "@store/reducers/auth/auth.slice";
 
 interface Props {
   changeDrawer: (value: boolean) => void;
 }
 
 const DrawerMenuContent: FC<Props> = ({ changeDrawer }) => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    localStorage.removeItem("access_token");
+    dispatch(setAuth(false));
+    changeDrawer(false);
+  };
+
   return (
     <Stack
       spacing={2}
@@ -26,7 +36,10 @@ const DrawerMenuContent: FC<Props> = ({ changeDrawer }) => {
         <ContentCategories />
       </Stack>
 
-      <Button sx={{ justifyContent: "flex-start", paddingBottom: "14px" }}>
+      <Button
+        onClick={handleLogOut}
+        sx={{ justifyContent: "flex-start", paddingBottom: "14px" }}
+      >
         <Stack direction="row" spacing={1.5}>
           <Icon component={LogoutRoundedIcon} />
           <Typography

@@ -45,6 +45,18 @@ const TopDrawerSecondary = () => {
       alignItems="center"
       sx={{ height: "64px" }}
     >
+      {router.pathname === "/application" && (
+        <Box
+          sx={{
+            position: "absolute",
+            left: 0,
+          }}
+        >
+          <IconButton onClick={handleNavigate} sx={{ color: "common.black" }}>
+            <ArrowBackIosRoundedIcon />
+          </IconButton>
+        </Box>
+      )}
       <Typography sx={{ fontSize: "16px", letterSpacing: "1px" }}>
         {router.pathname === "/search"
           ? "Поиск"
@@ -54,6 +66,8 @@ const TopDrawerSecondary = () => {
           ? "Корзина"
           : router.pathname === "/profile"
           ? "Профиль"
+          : router.pathname === "/application"
+          ? "Заявка"
           : ""}
       </Typography>
     </Stack>

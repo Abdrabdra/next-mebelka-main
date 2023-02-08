@@ -9,7 +9,7 @@ import CropLandscapeIcon from "@mui/icons-material/CropLandscape";
 import ScienceIcon from "@mui/icons-material/Science";
 import BedIcon from "@mui/icons-material/Bed";
 
-import StorefrontRoundedIcon from '@mui/icons-material/StorefrontRounded';
+import StorefrontRoundedIcon from "@mui/icons-material/StorefrontRounded";
 
 const categories = [
   {
@@ -49,6 +49,10 @@ const ContentCategories = () => {
 
   const handleNavigate = () => {
     router.push("/search");
+  };
+
+  const handleApplication = () => {
+    router.push("/application");
   };
 
   return (
@@ -116,7 +120,7 @@ const ContentCategories = () => {
             </Button>
           ))}
           <Button
-            onClick={handleNavigate}
+            onClick={handleApplication}
             sx={{
               backgroundColor: "primary.main",
               borderRadius: "12px",
@@ -136,7 +140,10 @@ const ContentCategories = () => {
                 height: "40px",
               }}
             >
-              <Icon component={StorefrontRoundedIcon} sx={{ alignSelf: "center" }} />
+              <Icon
+                component={StorefrontRoundedIcon}
+                sx={{ alignSelf: "center" }}
+              />
             </Stack>
 
             <Typography
@@ -162,7 +169,7 @@ const ContentCategories = () => {
               <Icon
                 fontSize="medium"
                 component={KeyboardArrowRightRoundedIcon}
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: "center", color: "common.white" }}
               />
             </Stack>
           </Button>

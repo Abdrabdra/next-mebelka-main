@@ -20,6 +20,7 @@ import filterReducer from "./reducers/filter/filter.slice";
 
 //rtk
 import announcementApi from "./rtk-api/announcement-rtk/announcementApi";
+import applicationApi from "./rtk-api/application-rtk/applicationApi";
 
 const persistConfig = {
   key: "root",
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   basket: basketSlice,
 
   [announcementApi.reducerPath]: announcementApi.reducer,
+  [applicationApi.reducerPath]: applicationApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -51,7 +53,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(announcementApi.middleware),
+    }).concat(announcementApi.middleware, applicationApi.middleware),
 });
 
 export const persistor = persistStore(store);
