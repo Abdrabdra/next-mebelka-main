@@ -2,7 +2,8 @@ import * as React from "react";
 import { Box, Stack, Tab, Tabs } from "@mui/material";
 
 import { a11yProps, TabPanel } from "./TabConfig";
-import { DetailsTab } from "./Tabs";
+import DetailsTab from "./Tabs/DetailsTab";
+import CommentsTab from "./Tabs/CommentsTab";
 
 interface Props {
   details?: any;
@@ -32,12 +33,10 @@ const DoubleTab: React.FC<Props> = ({ details, commentsCount, forPreview }) => {
       <Box>
         <TabPanel value={value} index={0}>
           <DetailsTab details={details} />
-          {/* <DetailsTab details={details} /> */}
         </TabPanel>
         <TabPanel value={value} index={1}>
           Комменты
-          {/* <CommentsTab commentsCount={99} /> */}
-          {/* <CommentsTab commentsCount={commentsCount} forPreview={forPreview} /> */}
+          <CommentsTab commentsCount={99} />
         </TabPanel>
       </Box>
     </Stack>

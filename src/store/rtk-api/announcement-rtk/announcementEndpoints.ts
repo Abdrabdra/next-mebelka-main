@@ -11,7 +11,32 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       },
       providesTags: ["announcements"],
     }),
+
+    getFeedback: builder.query<any, object>({
+      query: (arg) => {
+        return {
+          url: `/feedback`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["feedback"],
+    }),
+    createFeedback: builder.mutation<any, any>({
+      query: (body) => {
+        return {
+          url: `/feedback`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["feedback"],
+    }),
   }),
 });
 
-export const { useGetAnnouncementsQuery } = announcementEndpoints;
+export const {
+  useGetAnnouncementsQuery,
+
+  useGetFeedbackQuery,
+  useCreateFeedbackMutation,
+} = announcementEndpoints;
