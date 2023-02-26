@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { CircularProgress, Stack, Typography } from "@mui/material";
 
-import { ActionsEnum } from "@store/enum";
+import { ActionsEnum } from "@src/types/enum";
 import { AppDispatch, RootState, useTypedSelector } from "@store/index";
 import { login, registration } from "@store/reducers/auth/auth.action";
 
@@ -12,12 +12,14 @@ import { MainButton } from "@components/ui/Buttons";
 import { useRouter } from "next/router";
 import { MainInput } from "@components/ui/Inputs";
 import AbsoluteBox from "@components/ui/AbsoluteBox";
-import { setAuth } from "@store/reducers/auth/auth.slice";
+import { setAuth, setStatus } from "@store/reducers/auth/auth.slice";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { status } = useTypedSelector((state) => state.auth);
   const router = useRouter();
+
+  const error = useTypedSelector((state) => state.auth.error);
+  const status = useTypedSelector((state) => state.auth.status);
 
   const formik = useFormik({
     initialValues: {
@@ -25,11 +27,21 @@ const RegistrationForm = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(registration(values));
+      await dispatch(registration(values));
     },
     validationSchema: RegistrationSchema,
   });
 
+  useEffect(() => {
+    if (status === ActionsEnum.SUCCESS) {
+      setTimeout(() => {
+        router.push("/auth/login");
+        setStatus(ActionsEnum.IDLE);
+      }, 3000);
+    }
+  }, [status]);
+
+  // form
   const { values, errors, handleChange, handleSubmit } = formik;
   const { phone, password } = values;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +120,24 @@ const RegistrationForm = () => {
               </Typography>
             </Stack>
           </Stack>
+
+          {status !== ActionsEnum.IDLE && status !== ActionsEnum.LOADING && (
+            <Stack spacing={1} justifyContent="center">
+              <Typography
+                color={status === ActionsEnum.ERROR ? "error.main" : "success"}
+                sx={{ textAlign: "center" }}
+              >
+                {status === ActionsEnum.ERROR
+                  ? error?.message
+                  : "Успешно Зарегистрировались"}
+              </Typography>
+              {status === ActionsEnum.ERROR && (
+                <Typography sx={{ textAlign: "center" }}>
+                  Попробуйте еще раз
+                </Typography>
+              )}
+            </Stack>
+          )}
 
           <AbsoluteBox>
             <MainButton

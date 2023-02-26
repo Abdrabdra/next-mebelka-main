@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { CircularProgress, Stack, Typography } from "@mui/material";
 
-import { ActionsEnum } from "@store/enum";
+import { ActionsEnum } from "@src/types/enum";
 import { AppDispatch, RootState, useTypedSelector } from "@store/index";
 import { login } from "@store/reducers/auth/auth.action";
 

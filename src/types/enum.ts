@@ -3,5 +3,4 @@ export enum ActionsEnum {
   SUCCESS = "SUCCESS",
   ERROR = "ERROR",
   LOADING = "LOADING",
-  LIMIT = "LIMIT",
 }
