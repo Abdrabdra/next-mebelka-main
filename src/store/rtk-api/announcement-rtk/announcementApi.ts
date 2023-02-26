@@ -4,6 +4,6 @@ import { baseQuery } from "../rtkApi";
 export default createApi({
   reducerPath: "announcementApi",
   baseQuery: baseQuery,
-  tagTypes: ["announcements", "feedback"],
+  tagTypes: ["announcements", "feedback", "cart"],
   endpoints: () => ({}),
 });

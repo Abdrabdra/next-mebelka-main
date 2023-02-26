@@ -8,15 +8,22 @@ import {
   updateBasket,
 } from "@store/reducers/basket/basket.slice";
 import { useTypedSelector } from "@store/index";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { number } from "yup";
 
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import {
+  useCreateCartMutation,
+  useDeleteCartMutation,
+} from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 
-const FooterBasket = () => {
+interface Props {
+  productId: number;
+}
+
+const AnnounceFooterBasket: FC<Props> = ({ productId }) => {
   const router = useRouter();
-  const { id } = router.query;
   const dispatch = useDispatch();
 
   const basketItems = useTypedSelector((state) => state.basket.items);
@@ -24,19 +31,24 @@ const FooterBasket = () => {
   const [inBasket, setInBasket] = useState(false);
 
   useEffect(() => {
-    if (basketItems.filter((row) => row.id == Number(id)).length > 0) {
-      setInBasket(true);
-    } else {
-      setInBasket(false);
-    }
+    // if (basketItems.filter((row) => row.id == Number(id)).length > 0) {
+    //   setInBasket(true);
+    // } else {
+    //   setInBasket(false);
+    // }
   }, [basketItems]);
 
+  const [createCart, data] = useCreateCartMutation();
+  const [deleteCart] = useDeleteCartMutation();
+
   const handleAddToBasket = () => {
-    id && dispatch(updateBasket({ id: id }));
+    createCart({ qty: 1, productId: Number(productId) });
   };
 
+  console.log(data);
+
   const handleDeleteFromBasket = () => {
-    id && dispatch(deleteBasketItem(Number(id)));
+    // deleteCart();
   };
 
   const handleNavigate = () => {
@@ -110,4 +122,4 @@ const FooterBasket = () => {
   );
 };
 
-export default FooterBasket;
+export default AnnounceFooterBasket;

@@ -5,17 +5,18 @@ import ContentHeader from "./ContentHeader";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@store/reducers/auth/auth.slice";
+import { logout } from "@store/reducers/auth/auth.action";
+import { AppDispatch } from "@store/index";
 
 interface Props {
   changeDrawer: (value: boolean) => void;
 }
 
 const DrawerMenuContent: FC<Props> = ({ changeDrawer }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleLogOut = () => {
-    localStorage.removeItem("access_token");
-    dispatch(setAuth(false));
+    dispatch(logout());
     changeDrawer(false);
   };
 

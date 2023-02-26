@@ -1,8 +1,18 @@
 import { alpha, Divider, Icon, Stack, Typography } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import { INFO } from "@utils/theme/palette";
+import { FC } from "react";
 
-const AnnounceInfo = () => {
+interface Props {
+  title: string;
+  avgRating: number;
+  discount: number;
+  price: number;
+}
+
+const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
+  const discountPrice = discount && (price * (100 - discount)) / 100;
+
   return (
     <Stack
       spacing={1.5}
@@ -15,7 +25,7 @@ const AnnounceInfo = () => {
       <Typography
         sx={{ fontSize: "20px", fontWeight: 600, letterSpacing: "1px" }}
       >
-        Кровать “Olimpia”
+        {title}
       </Typography>
 
       <Stack direction="row" alignItems={"center"} spacing={1}>
@@ -23,7 +33,7 @@ const AnnounceInfo = () => {
         <Typography
           sx={{ fontSize: "16px", fontWeight: 500, letterSpacing: "1px" }}
         >
-          4.7
+          {avgRating}
         </Typography>
 
         <Divider variant="middle" orientation="vertical" flexItem />
@@ -36,7 +46,7 @@ const AnnounceInfo = () => {
             color: "error.main",
           }}
         >
-          -70%
+          -{discount}%
         </Typography>
 
         <Divider variant="middle" orientation="vertical" flexItem />
@@ -49,7 +59,7 @@ const AnnounceInfo = () => {
             color: "grey.700",
           }}
         >
-          520 продано
+          0 продано
         </Typography>
       </Stack>
 
@@ -57,34 +67,36 @@ const AnnounceInfo = () => {
         <Typography
           sx={{ fontWeight: 700, fontSize: "24px", letterSpacing: "1px" }}
         >
-          450 000тг
+          {discount ? discountPrice : price}тг
         </Typography>
-        <Typography
-          sx={{
-            alignSelf: "flex-end",
-            color: "info.400",
-            fontWeight: 300,
-            fontSize: "14px",
-            letterSpacing: "1px",
-            position: "relative",
+        {discount && (
+          <Typography
+            sx={{
+              alignSelf: "flex-end",
+              color: "info.400",
+              fontWeight: 300,
+              fontSize: "14px",
+              letterSpacing: "1px",
+              position: "relative",
 
-            "&:after": {
-              content: '""',
-              position: "absolute",
-              width: "100%",
-              height: "1px",
-              backgroundColor: alpha(INFO[400], 0.7),
-              opacity: 0.8,
-              top: 0,
-              bottom: 0,
-              left: 0,
-              marginTop: "auto",
-              marginBottom: "auto",
-            },
-          }}
-        >
-          1 100 000тг
-        </Typography>
+              "&:after": {
+                content: '""',
+                position: "absolute",
+                width: "100%",
+                height: "1px",
+                backgroundColor: alpha(INFO[400], 0.7),
+                opacity: 0.8,
+                top: 0,
+                bottom: 0,
+                left: 0,
+                marginTop: "auto",
+                marginBottom: "auto",
+              },
+            }}
+          >
+            {price}тг
+          </Typography>
+        )}
       </Stack>
     </Stack>
   );

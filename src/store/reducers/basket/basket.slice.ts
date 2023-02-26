@@ -7,10 +7,16 @@ export interface BasketItem {
 
 interface IInitState {
   items: BasketItem[];
+  values: {
+    qty: number;
+  };
 }
 
 const initialState: IInitState = {
   items: [],
+  values: {
+    qty: 1,
+  },
 };
 
 const basketSlice = createSlice({
@@ -26,6 +32,7 @@ const basketSlice = createSlice({
 
     setBasketReset: (state) => {
       state.items = initialState.items;
+      state.values = initialState.values;
     },
   },
 });

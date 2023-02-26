@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitState {
-  // состояние: нет в бэке
-  // marks: number[] | null
-  // models: number[] | null
-
-  // cities: number[] | null
-
   helper: {
     reset: boolean;
   };
@@ -28,11 +22,6 @@ interface IInitState {
 }
 
 const initialState: IInitState = {
-  // состояние: нет в бэке
-  // models: null,
-  // marks: null,
-  // cities: null,
-
   helper: {
     reset: true,
   },
@@ -53,8 +42,8 @@ const initialState: IInitState = {
   },
 };
 
-const filterReducer = createSlice({
-  name: "filter",
+const productFilterSlice = createSlice({
+  name: "productFilter",
   initialState,
   reducers: {
     setFilter: (state, { payload }) => {
@@ -66,6 +55,6 @@ const filterReducer = createSlice({
   },
 });
 
-export const { setFilter, setFilterReset } = filterReducer.actions;
+export const { setFilter, setFilterReset } = productFilterSlice.actions;
 
-export default filterReducer.reducer;
+export default productFilterSlice.reducer;

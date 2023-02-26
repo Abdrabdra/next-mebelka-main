@@ -1,6 +1,10 @@
 import { Stack, Typography } from "@mui/material";
+import { IColors, IImages } from "@src/types/Announcements/IOneAnnouncement";
+import { FC } from "react";
 
-const AnnounceDescription = () => {
+interface Props {}
+
+const AnnounceDescription: FC<Props> = () => {
   return (
     <Stack
       spacing={1}

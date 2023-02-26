@@ -7,18 +7,22 @@ import AnnounceInfo from "./AnnounceInfo";
 import AnnounceRecomendations from "./AnnounceRecomendations";
 import AnnounceTabs from "./AnnounceTabs";
 
-import mockPicture from "@assets/img/krovat_Olimpia.png";
+import AnnounceFooterBasket from "./AnnounceFooterBasket";
+import AnnounceImage from "./AnnounceImage";
+import { useGetOneProductQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
+import { useRouter } from "next/router";
 
 const OneAnnounce = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { data } = useGetOneProductQuery(String(id), {
+    skip: id ? false : true,
+  });
+
   return (
     <Stack>
-      <Stack sx={{ height: "350px", backgroundColor: "secondary.main" }}>
-        <Image
-          src={mockPicture}
-          style={{ width: "100%", height: "350px" }}
-          alt={"Product"}
-        />
-      </Stack>
+      <AnnounceImage />
 
       <Stack
         sx={{
@@ -30,16 +34,25 @@ const OneAnnounce = () => {
         }}
       >
         <Container>
-          <Stack spacing={1.5}>
-            <AnnounceInfo />
-            <AnnounceDescription />
-            <AnnounceColors />
-            <AnnounceAmount />
-            <AnnounceTabs />
-            <AnnounceRecomendations />
-          </Stack>
+          {data && (
+            <Stack spacing={1.5}>
+              <AnnounceInfo
+                title={data.title}
+                avgRating={data.status.avg}
+                discount={data.discount}
+                price={data.price}
+              />
+              <AnnounceDescription />
+              <AnnounceColors colors={data.colors} />
+              <AnnounceAmount />
+              <AnnounceTabs />
+              <AnnounceRecomendations />
+            </Stack>
+          )}
         </Container>
       </Stack>
+
+      {id && <AnnounceFooterBasket productId={Number(id)} />}
     </Stack>
   );
 };
