@@ -1,5 +1,6 @@
 import { IAnnouncementsResponse } from "@src/types/Announcements/IAnnouncement";
 import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
+import { ICreateCart, IGetCart } from "@src/types/Cart/ICart";
 import announcementApi from "./announcementApi";
 
 export const announcementEndpoints = announcementApi.injectEndpoints({
@@ -40,7 +41,16 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       invalidatesTags: ["feedback"],
     }),
 
-    createCart: builder.mutation<any, { qty: number; productId: number }>({
+    getCart: builder.query<IGetCart[], string>({
+      query: () => {
+        return {
+          url: `/cart`,
+          // params: { ...arg },
+        };
+      },
+      providesTags: ["cart"],
+    }),
+    createCart: builder.mutation<any, ICreateCart>({
       query: (body) => {
         return {
           url: `/cart`,
@@ -59,6 +69,34 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       },
       invalidatesTags: ["cart"],
     }),
+    plusCart: builder.mutation<any, number>({
+      query: (arg) => {
+        return {
+          url: `/cart/plus/${arg}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
+    minceCart: builder.mutation<any, number>({
+      query: (arg) => {
+        return {
+          url: `/cart/mince/${arg}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
+
+    getMarket: builder.query<IGetCart[], string>({
+      query: () => {
+        return {
+          url: `/market`,
+          // params: { ...arg },
+        };
+      },
+      providesTags: ["cart"],
+    }),
   }),
 });
 
@@ -68,7 +106,10 @@ export const {
 
   useGetFeedbackQuery,
   useCreateFeedbackMutation,
-  useCreateCartMutation,
 
+  useGetCartQuery,
+  useCreateCartMutation,
   useDeleteCartMutation,
+  usePlusCartMutation,
+  useMinceCartMutation,
 } = announcementEndpoints;

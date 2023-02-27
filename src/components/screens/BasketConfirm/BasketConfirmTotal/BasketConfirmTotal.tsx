@@ -1,20 +1,25 @@
 import AbsoluteBox from "@components/ui/AbsoluteBox";
 import { MainButton } from "@components/ui/Buttons";
 import { Container, Stack } from "@mui/material";
+import { useGetCartQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 import BasketConfirmButton from "./BasketConfirmButton";
 import BasketList from "./BasketList";
 import BasketShopInfo from "./BasketShopInfo";
 import BasketTotalPayment from "./BasketTotalPayment";
 
 const BasketConfirmTotal = () => {
+  const { data } = useGetCartQuery("");
+
   return (
     <Container>
-      <Stack spacing={2} sx={{ position: "relative" }}>
-        <BasketList />
-        <BasketTotalPayment />
-        <BasketShopInfo />
-        <BasketConfirmButton />
-      </Stack>
+      {data && (
+        <Stack spacing={2} sx={{ position: "relative" }}>
+          <BasketList data={data} />
+          <BasketTotalPayment data={data} />
+          {/* <BasketShopInfo /> */}
+          <BasketConfirmButton />
+        </Stack>
+      )}
     </Container>
   );
 };

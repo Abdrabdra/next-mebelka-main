@@ -17,6 +17,9 @@ import {
   useCreateCartMutation,
   useDeleteCartMutation,
 } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
+import { BaseModal } from "@components/ui/Modal";
+import AuthBox from "@components/modules/PrivateRoute/AuthBox";
+import { useIsUserAuth } from "@utils/useIsUserAuth";
 
 interface Props {
   productId: number;
@@ -41,11 +44,16 @@ const AnnounceFooterBasket: FC<Props> = ({ productId }) => {
   const [createCart, data] = useCreateCartMutation();
   const [deleteCart] = useDeleteCartMutation();
 
+  const ads = useIsUserAuth();
+  const qty = useTypedSelector((state) => state.basket.values.qty);
   const handleAddToBasket = () => {
-    createCart({ qty: 1, productId: Number(productId) });
+    if (ads) {
+      console.log("qty: ", qty);
+      createCart({ qty: qty, productId: Number(productId) });
+    } else {
+      handleOpenModal();
+    }
   };
-
-  console.log(data);
 
   const handleDeleteFromBasket = () => {
     // deleteCart();
@@ -53,6 +61,15 @@ const AnnounceFooterBasket: FC<Props> = ({ productId }) => {
 
   const handleNavigate = () => {
     router.push("/basket");
+  };
+
+  // forModal
+  const [open, setOpen] = useState(false);
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  const handleCloseModal = () => {
+    setOpen(false);
   };
 
   return (
@@ -91,24 +108,38 @@ const AnnounceFooterBasket: FC<Props> = ({ productId }) => {
           Уже в корзине
         </MainButton>
       ) : (
-        <MainButton
-          onClick={handleAddToBasket}
-          bgcolor="secondary.main"
-          startIcon={<AddRoundedIcon />}
-          sx={{
-            fontWeight: 600,
-            fontSize: "14px",
-            textTransform: "initial",
-            color: "primary.main",
+        <>
+          <MainButton
+            onClick={handleAddToBasket}
+            bgcolor="secondary.main"
+            startIcon={<AddRoundedIcon />}
+            sx={{
+              fontWeight: 600,
+              fontSize: "14px",
+              textTransform: "initial",
+              color: "primary.main",
 
-            "&:focus, &:hover": {
-              borderColor: "secondary.main",
-              backgroundColor: "secondary.main",
-            },
-          }}
-        >
-          Добавить в корзину
-        </MainButton>
+              "&:focus, &:hover": {
+                borderColor: "secondary.main",
+                backgroundColor: "secondary.main",
+              },
+            }}
+          >
+            Добавить в корзину
+          </MainButton>
+          <BaseModal open={open} handleClose={handleCloseModal}>
+            <Stack
+              sx={{
+                backgroundColor: "common.white",
+                borderRadius: "15px",
+                padding: "20px",
+                height: "150px",
+              }}
+            >
+              <AuthBox />
+            </Stack>
+          </BaseModal>
+        </>
       )}
 
       <MainButton

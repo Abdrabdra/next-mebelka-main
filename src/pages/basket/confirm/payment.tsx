@@ -1,22 +1,26 @@
+import PrivateRoute from "@components/modules/PrivateRoute";
 import { BasketConfirmPayment } from "@components/screens/BasketConfirm";
 import { MainLayout } from "@layouts/MainLayout";
 import { useTypedSelector } from "@store/index";
+import { useGetCartQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const BasketConfirmPaymentPage = () => {
   const router = useRouter();
-  const basketItems = useTypedSelector((state) => state.basket.items);
+  const { data } = useGetCartQuery("");
 
   useEffect(() => {
-    if (basketItems.length === 0) {
+    if (data?.length === 0) {
       router.push("/basket");
     }
-  }, [basketItems]);
+  }, [data]);
 
   return (
     <MainLayout>
-      <BasketConfirmPayment />
+      <PrivateRoute>
+        <BasketConfirmPayment />
+      </PrivateRoute>
     </MainLayout>
   );
 };

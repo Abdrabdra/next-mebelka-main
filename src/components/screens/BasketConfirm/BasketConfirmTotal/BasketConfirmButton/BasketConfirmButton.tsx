@@ -1,6 +1,6 @@
 import AbsoluteBox from "@components/ui/AbsoluteBox";
 import { MainButton } from "@components/ui/Buttons";
-import { BasicModal } from "@components/ui/Modal";
+import { BaseModal } from "@components/ui/Modal";
 import { Icon, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -25,9 +25,9 @@ const BasketConfirmButton = () => {
         Подтвердить
       </MainButton>
 
-      <BasicModal open={open} handleClose={() => null}>
+      <BaseModal open={open} handleClose={() => null}>
         <ModalContent />
-      </BasicModal>
+      </BaseModal>
     </AbsoluteBox>
   );
 };

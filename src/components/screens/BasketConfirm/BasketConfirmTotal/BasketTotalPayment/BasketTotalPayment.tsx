@@ -4,14 +4,26 @@ import { useRouter } from "next/router";
 import { useTypedSelector } from "@store/index";
 import { FC } from "react";
 import numberWithSpaces from "@utils/numberWithSpaces";
+import { IGetCart } from "@src/types/Cart/ICart";
 
-const BasketTotalPayment = () => {
+interface Props {
+  data: IGetCart[];
+}
+
+const BasketTotalPayment: FC<Props> = ({ data }) => {
   const router = useRouter();
-  const basketItems = useTypedSelector((state) => state.basket.items);
 
   const handleNavigate = (id: number) => {
     router.push(`/announce/${id}`);
   };
+
+  const discountPrice = (discount: number, price: number) => {
+    return ((price * (100 - discount)) / 100).toFixed(2);
+  };
+
+  const totalPrice = data
+    .reduce((acc, row) => acc + row.totalPrice, 0)
+    .toFixed(2);
 
   return (
     <Stack
@@ -33,16 +45,16 @@ const BasketTotalPayment = () => {
         Итого к оплате
       </Typography>
 
-      {basketItems.map((row) => (
+      {data.map((row) => (
         <Stack key={row.id} spacing={1.5}>
           <Stack
-            onClick={() => handleNavigate(row.id)}
+            onClick={() => handleNavigate(row.product.id)}
             direction="row"
             alignItems="center"
             justifyContent={"space-between"}
           >
             <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-              Диван “Lanister”
+              {row.product.title}
             </Typography>
             <IconButton size="small" sx={{ color: "common.black" }}>
               <ArrowForwardIosRoundedIcon fontSize="inherit" />
@@ -52,18 +64,20 @@ const BasketTotalPayment = () => {
           <Stack spacing={1}>
             <StyledElement
               title="Стоимость товара"
-              text={`${numberWithSpaces(450000)}KZT`}
+              text={`${numberWithSpaces(
+                Number(discountPrice(row.product.discount, row.product.price))
+              )}KZT`}
             />
             <Divider />
-            <StyledElement title="Цвет" text="Черный" />
+            <StyledElement title="Цвет" text={"Цвет"} />
             <Divider />
-            <StyledElement title="Колличество" text="1" />
+            <StyledElement title="Колличество" text={`${row.qty}`} />
             <Divider />
-            <StyledElement
+            {/* <StyledElement
               title="Доставка"
-              text={`${numberWithSpaces(2160)}KZT`}
+              text={`${numberWithSpaces(777)}KZT`}
             />
-            <Divider />
+            <Divider /> */}
           </Stack>
         </Stack>
       ))}
@@ -73,7 +87,7 @@ const BasketTotalPayment = () => {
           Стоимость заказа
         </Typography>
         <Typography sx={{ fontWeight: 600, fontSize: "16px" }}>
-          {numberWithSpaces(902160)}KZT
+          {numberWithSpaces(Number(totalPrice))}KZT
         </Typography>
       </Stack>
     </Stack>

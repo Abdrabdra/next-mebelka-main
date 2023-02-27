@@ -1,11 +1,25 @@
 import { IconButton, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import { useDispatch } from "react-redux";
+import { setQty } from "@store/reducers/basket/basket.slice";
+import { AppDispatch, useTypedSelector } from "@store/index";
 
 const AnnounceAmount = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const qty = useTypedSelector((state) => state.basket.values.qty);
   const [state, setState] = useState(1);
+
+  useEffect(() => {
+    dispatch(setQty(1));
+  }, []);
+
+  useEffect(() => {
+    dispatch(setQty(state));
+  }, [state]);
 
   const handleDecrement = () => {
     if (state === 1) {

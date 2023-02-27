@@ -16,7 +16,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const BasicModal: FC<Props> = ({ open, handleClose, children }) => {
+const BaseModal: FC<Props> = ({ open, handleClose, children }) => {
   return (
     <Modal
       open={open}
@@ -29,4 +29,4 @@ const BasicModal: FC<Props> = ({ open, handleClose, children }) => {
   );
 };
 
-export default BasicModal;
+export default BaseModal;

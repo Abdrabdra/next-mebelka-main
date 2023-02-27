@@ -1,18 +1,27 @@
 import { MainButton } from "@components/ui/Buttons";
 import { Container, Stack, Typography } from "@mui/material";
+import { IGetCart } from "@src/types/Cart/ICart";
 import { useTypedSelector } from "@store/index";
 import numberWithSpaces from "@utils/numberWithSpaces";
 import { useRouter } from "next/router";
+import { FC } from "react";
 
-const BasketFixedFooter = () => {
+interface Props {
+  data: IGetCart[];
+}
+
+const BasketFixedFooter: FC<Props> = ({ data }) => {
   const router = useRouter();
-  const basketItems = useTypedSelector((state) => state.basket.items);
+
+  const finalPrice = data
+    .reduce((acc, row) => acc + row.totalPrice, 0)
+    .toFixed(2);
 
   const handleNavigate = () => {
     router.push("/basket/confirm/address");
   };
 
-  return basketItems.length === 0 ? null : (
+  return data.length === 0 ? null : (
     <Stack
       sx={{
         width: "100%",
@@ -36,7 +45,7 @@ const BasketFixedFooter = () => {
               Общая стоимость заказа
             </Typography>
             <Typography sx={{ fontWeight: 700, fontSize: "22px" }}>
-              {numberWithSpaces(902160)}KZT
+              {numberWithSpaces(Number(finalPrice))}KZT
             </Typography>
           </Stack>
           <MainButton

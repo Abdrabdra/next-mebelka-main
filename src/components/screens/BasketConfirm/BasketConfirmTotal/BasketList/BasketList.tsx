@@ -1,11 +1,11 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { alpha, Box, Container, Stack, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useTypedSelector } from "@store/index";
 
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import { useState } from "react";
+import { FC, useState } from "react";
 import numberWithSpaces from "@utils/numberWithSpaces";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -13,11 +13,16 @@ import { deleteBasketItem } from "@store/reducers/basket/basket.slice";
 import Image from "next/image";
 
 import mockPicture from "@assets/img/krovat_Olimpia.png";
+import { IGetCart } from "@src/types/Cart/ICart";
+import { INFO } from "@utils/theme/palette";
 
-const BasketList = () => {
+interface Props {
+  data: IGetCart[];
+}
+
+const BasketList: FC<Props> = ({ data }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const basketItems = useTypedSelector((state) => state.basket.items);
 
   const [state, setState] = useState(1);
 
@@ -41,9 +46,13 @@ const BasketList = () => {
     dispatch(deleteBasketItem(id));
   };
 
+  const discountPrice = (discount: number, price: number) => {
+    return ((price * (100 - discount)) / 100).toFixed(2);
+  };
+
   return (
     <Stack spacing={2}>
-      {basketItems.length === 0 ? (
+      {data.length === 0 ? (
         <Stack
           justifyContent={"center"}
           alignItems={"center"}
@@ -52,7 +61,7 @@ const BasketList = () => {
           Корзина Пуста
         </Stack>
       ) : (
-        basketItems.map((row) => (
+        data.map((row) => (
           <Stack
             spacing={2}
             direction="row"
@@ -89,7 +98,7 @@ const BasketList = () => {
               <Stack spacing={1}>
                 <Stack direction={"row"} justifyContent="space-between">
                   <Typography
-                    onClick={() => handleClick(row.id)}
+                    onClick={() => handleClick(row.product.id)}
                     sx={{
                       fontSize: "18px",
                       letterSpacing: "1px",
@@ -97,7 +106,7 @@ const BasketList = () => {
                       cursor: "pointer",
                     }}
                   >
-                    Диван “Lanister”
+                    {row.product.title}
                   </Typography>
 
                   <Typography
@@ -117,21 +126,61 @@ const BasketList = () => {
                         color: "common.black",
                       }}
                     >
-                      1
+                      {row.qty}
                     </Typography>
                   </Typography>
                 </Stack>
 
-                <Typography
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    letterSpacing: "1px",
-                    color: "primary.main",
-                  }}
-                >
-                  {numberWithSpaces(450000)}тг
-                </Typography>
+                <Stack direction="row" spacing={1}>
+                  <Typography
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "16px",
+                      letterSpacing: "1px",
+                      color: "primary.main",
+                    }}
+                  >
+                    {numberWithSpaces(
+                      Number(
+                        row.product.discount
+                          ? discountPrice(
+                              row.product.discount,
+                              row.product.price
+                            )
+                          : row.product.price
+                      )
+                    )}
+                    тг
+                  </Typography>
+                  {row.product.discount && (
+                    <Typography
+                      sx={{
+                        alignSelf: "flex-end",
+                        color: "info.400",
+                        fontWeight: 300,
+                        fontSize: "14px",
+                        letterSpacing: "1px",
+                        position: "relative",
+
+                        "&:after": {
+                          content: '""',
+                          position: "absolute",
+                          width: "100%",
+                          height: "1px",
+                          backgroundColor: alpha(INFO[400], 0.7),
+                          opacity: 0.8,
+                          top: 0,
+                          bottom: 0,
+                          left: 0,
+                          marginTop: "auto",
+                          marginBottom: "auto",
+                        },
+                      }}
+                    >
+                      {row.product.price}тг
+                    </Typography>
+                  )}
+                </Stack>
               </Stack>
             </Stack>
           </Stack>
