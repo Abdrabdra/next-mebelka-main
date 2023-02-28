@@ -19,7 +19,7 @@ const PaymentForm = () => {
       }}
     >
       <MainButton jc="start" bgcolor="common.white" tcolor="primary.main">
-        asd
+        Нужно Добавить Карту
       </MainButton>
 
       <MainButton onClick={handleNavigate}>Продолжить</MainButton>
