@@ -2,15 +2,16 @@ import PrivateRoute from "@components/modules/PrivateRoute";
 import { BasketConfirmTotal } from "@components/screens/BasketConfirm";
 import { MainLayout } from "@layouts/MainLayout";
 import { useGetCartQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
+import { useIsUserAuth } from "@utils/useIsUserAuth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const BasketConfirmTotalPage = () => {
   const router = useRouter();
-  const { data } = useGetCartQuery("");
+  const { data, isError } = useGetCartQuery("");
 
   useEffect(() => {
-    if (data?.length === 0) {
+    if (isError || data?.length === 0) {
       router.push("/basket");
     }
   }, [data]);

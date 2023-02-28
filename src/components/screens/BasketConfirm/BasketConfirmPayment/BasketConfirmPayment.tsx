@@ -7,9 +7,7 @@ import PaymentForm from "./PaymentForm";
 const BasketConfirmPayment = () => {
   return (
     <Container>
-      <Stack>
-        <PaymentForm />
-      </Stack>
+      <PaymentForm />
     </Container>
   );
 };

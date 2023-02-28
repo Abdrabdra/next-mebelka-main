@@ -15,22 +15,22 @@ const AddressForm = () => {
   };
 
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        backgroundColor: "secondary.main",
-        padding: "16px",
-        borderRadius: "12px",
+    <Formik
+      initialValues={{ address: "", house: "", apartment: "", phone: "" }}
+      onSubmit={(values) => {
+        handleNavigate();
       }}
     >
-      <Formik
-        initialValues={{ address: "", phone: "", apartment: "" }}
-        onSubmit={(values) => {
-          handleNavigate();
-        }}
-      >
-        {({ values, handleChange }) => (
-          <Form>
+      {({ values, handleChange }) => (
+        <Form>
+          <Stack
+            spacing={2}
+            sx={{
+              backgroundColor: "secondary.main",
+              padding: "16px",
+              borderRadius: "12px",
+            }}
+          >
             <Stack spacing={1}>
               <BoldTitle title="Адрес" />
               <MainInput
@@ -47,8 +47,8 @@ const AddressForm = () => {
               <BoldTitle title="Дом" />
               <MainInput
                 required
-                name={"FFF"}
-                value={values.apartment}
+                name={"house"}
+                value={values.house}
                 onChange={handleChange}
                 bgcolor="common.white"
                 label={"Номер вашего дома"}
@@ -82,10 +82,10 @@ const AddressForm = () => {
             <AbsoluteBox>
               <MainButton type="submit">Продолжить</MainButton>
             </AbsoluteBox>
-          </Form>
-        )}
-      </Formik>
-    </Stack>
+          </Stack>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

@@ -10,7 +10,18 @@ const PaymentForm = () => {
   };
 
   return (
-    <Stack>
+    <Stack
+      spacing={2}
+      sx={{
+        backgroundColor: "secondary.main",
+        padding: "16px",
+        borderRadius: "12px",
+      }}
+    >
+      <MainButton jc="start" bgcolor="common.white" tcolor="primary.main">
+        asd
+      </MainButton>
+
       <MainButton onClick={handleNavigate}>Продолжить</MainButton>
     </Stack>
   );

@@ -10,17 +10,6 @@ import BasketList from "./BasketList";
 const Basket = () => {
   const { data, refetch, error } = useGetCartQuery("");
 
-  useEffect(() => {
-    refetch();
-  }, []);
-
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    if (error && "status" in error && error.status === 401) {
-      dispatch(logout());
-    }
-  }, [error]);
-
   return (
     <Stack>
       {data && (
