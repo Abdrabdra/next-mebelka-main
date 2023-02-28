@@ -33,6 +33,7 @@ const ProductListVertical: FC<Props> = ({ data }) => {
           spacing={1.5}
           sx={{
             flex: `0 0 177px`,
+            maxWidth: "177px",
             // flex: `0 0 calc(50% - 12px * 1 / 2)`,
             borderRadius: "20px",
             backgroundColor: "secondary.main",
@@ -90,7 +91,7 @@ const ProductListVertical: FC<Props> = ({ data }) => {
             >
               {row.discount
                 ? discountPrice(row.price, row.discount)
-                : row.price}
+                : row.price}тг
             </Typography>
             {row.discount && (
               <Typography
@@ -117,7 +118,7 @@ const ProductListVertical: FC<Props> = ({ data }) => {
                   },
                 }}
               >
-                {row.price}
+                {row.price}тг
               </Typography>
             )}
           </Stack>

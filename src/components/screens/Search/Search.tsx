@@ -3,6 +3,7 @@ import { useTypedSelector } from "@store/index";
 import { useGetAnnouncementsQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 import SearchBar from "../Home/SearchBar";
 import ProductListVertical from "./ProductListVertical";
+import ContentListPagination from "./ProductListVertical/ContentListPagination";
 
 const Search = () => {
   const filterProductValues = useTypedSelector(
@@ -24,7 +25,12 @@ const Search = () => {
     <Container>
       <Stack spacing={2}>
         <SearchBar />
-        {data && <ProductListVertical data={data} />}
+        {data && (
+          <>
+            <ProductListVertical data={data} />
+            <ContentListPagination count={data.count} />
+          </>
+        )}
       </Stack>
     </Container>
   );
