@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ICreateOrder } from "@src/types/Order/IOrder";
 
 export interface BasketItem {
   id: number;
@@ -10,12 +11,26 @@ interface IInitState {
   values: {
     qty: number;
   };
+  orderAddress: {
+    cityId?: number;
+    apartment: string;
+    building: string;
+    address: string;
+    phone: string;
+  };
 }
 
 const initialState: IInitState = {
   items: [],
   values: {
     qty: 1,
+  },
+  orderAddress: {
+    cityId: undefined,
+    apartment: "",
+    building: "",
+    address: "",
+    phone: "",
   },
 };
 
@@ -33,6 +48,10 @@ const basketSlice = createSlice({
       state.values.qty = payload;
     },
 
+    setBasketOrderAddress: (state, { payload }) => {
+      state.orderAddress = { ...state.orderAddress, ...payload };
+    },
+
     setBasketReset: (state) => {
       state.items = initialState.items;
       state.values = initialState.values;
@@ -40,7 +59,12 @@ const basketSlice = createSlice({
   },
 });
 
-export const { updateBasket, deleteBasketItem, setQty, setBasketReset } =
-  basketSlice.actions;
+export const {
+  updateBasket,
+  deleteBasketItem,
+  setQty,
+  setBasketOrderAddress,
+  setBasketReset,
+} = basketSlice.actions;
 
 export default basketSlice.reducer;

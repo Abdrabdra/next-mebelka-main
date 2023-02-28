@@ -5,6 +5,7 @@ import { useGetCartQuery } from "@store/rtk-api/announcement-rtk/announcementEnd
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import AuthBox from "./AuthBox";
+import BaseLoader from "./BaseLoader";
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +17,8 @@ const PrivateRoute: FC<Props> = ({ children }) => {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   const [isLogged, setIsLogged] = useState(false);
 
-  const { refetch, error, isSuccess, isError } = useGetCartQuery("");
+  const { refetch, isSuccess, isError, error, status, isLoading, isFetching } =
+    useGetCartQuery("");
   useEffect(() => {
     refetch();
   }, []);
@@ -26,25 +28,53 @@ const PrivateRoute: FC<Props> = ({ children }) => {
     dispatch(logout());
   };
 
-  useEffect(() => {
-    console.log("asd");
-    if (isAuth && token) {
-      if (error) {
-        console.log("setLOG FALSE");
+  const [isNewQuery, setIsNewQuery] = useState(false);
 
-        handleNeedAuth();
-      } else {
-        console.log("setLOG TRUE");
-        setIsLogged(true);
-      }
-    } else {
-      handleNeedAuth();
+  useEffect(() => {
+    if (status === "pending") {
+      setIsNewQuery(true);
     }
-  }, [isSuccess, isError]);
+  }, [status]);
+
+  const [is401, setIs401] = useState(false);
+  useEffect(() => {
+    if (error && "status" in error && error.status === 401) {
+      setIs401(true);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (isNewQuery && (status === "rejected" || status === "fulfilled")) {
+      if (isAuth && token) {
+        if (isError) {
+          handleNeedAuth();
+          setIsNewQuery(false);
+        } else {
+          setTimeout(() => {
+            setIsLogged(true);
+          }, 500);
+          setIsNewQuery(false);
+        }
+      } else {
+        handleNeedAuth();
+        setIsNewQuery(false);
+      }
+    }
+  }, [isNewQuery, status]);
 
   console.log("isLogged: ", isLogged);
 
-  return <>{isLogged ? children : <AuthBox />}</>;
+  return (
+    <>
+      {is401 ? (
+        isLoading || isFetching || (!isLogged && <BaseLoader />)
+      ) : isLogged ? (
+        children
+      ) : (
+        <AuthBox />
+      )}
+    </>
+  );
 };
 
 export default PrivateRoute;

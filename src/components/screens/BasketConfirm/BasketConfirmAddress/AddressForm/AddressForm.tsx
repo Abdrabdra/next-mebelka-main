@@ -1,23 +1,57 @@
 import AbsoluteBox from "@components/ui/AbsoluteBox";
 import { MainButton } from "@components/ui/Buttons";
 import { MainInput } from "@components/ui/Inputs";
-import { Stack } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Stack,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { setBasketOrderAddress } from "@store/reducers/basket/basket.slice";
+import { useGetCityQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const AddressForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNavigate = () => {
     router.push("/basket/confirm/payment");
   };
 
+  const { data } = useGetCityQuery("");
+
+  const [cityValue, setCityValue] = useState("");
+
+  const handleCityChange = (event: SelectChangeEvent) => {
+    setCityValue(event.target.value as string);
+  };
+
   return (
     <Formik
-      initialValues={{ address: "", house: "", apartment: "", phone: "" }}
+      initialValues={{
+        address: "",
+        building: "",
+        apartment: "",
+        phone: "",
+      }}
       onSubmit={(values) => {
+        dispatch(
+          setBasketOrderAddress({
+            cityId: cityValue,
+            address: values.address,
+            building: values.building,
+            apartment: values.apartment,
+            phone: values.phone,
+          })
+        );
         handleNavigate();
       }}
     >
@@ -31,6 +65,28 @@ const AddressForm = () => {
               borderRadius: "12px",
             }}
           >
+            <Stack spacing={1}>
+              <BoldTitle title="Город" />
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Город</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={cityValue}
+                    label="Город"
+                    onChange={handleCityChange}
+                  >
+                    {data?.map((row) =>
+                      row.cities.map((city) => (
+                        <MenuItem value={city.id}>{city.title}</MenuItem>
+                      ))
+                    )}
+                  </Select>
+                </FormControl>
+              </Box>
+            </Stack>
+
             <Stack spacing={1}>
               <BoldTitle title="Адрес" />
               <MainInput
@@ -47,8 +103,8 @@ const AddressForm = () => {
               <BoldTitle title="Дом" />
               <MainInput
                 required
-                name={"house"}
-                value={values.house}
+                name={"building"}
+                value={values.building}
                 onChange={handleChange}
                 bgcolor="common.white"
                 label={"Номер вашего дома"}

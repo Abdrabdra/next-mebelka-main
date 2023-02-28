@@ -29,7 +29,7 @@ const BasketFixedFooter: FC<Props> = ({ data }) => {
         position: "fixed",
         bottom: 0,
         borderRadius: "20px 20px 0 0",
-        zIndex: 99998,
+        zIndex: 9,
         backgroundColor: "common.white",
         boxShadow: "0px -5px 10px rgba(0, 0, 0, 0.05)",
       }}
