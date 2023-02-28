@@ -4,11 +4,14 @@ import { FC, useState } from "react";
 import Inventory2RoundedIcon from "@mui/icons-material/Inventory2Rounded";
 import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
 import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
+import { OrderStatus } from "@src/types/Order/OrderStatus.enum";
 
-const data: 0 | 1 | 2 = 0;
+interface Props {
+  data: OrderStatus;
+}
 
-const OrderOneStatus = () => {
-  const [status, setStatus] = useState(data);
+const OrderOneStatus: FC<Props> = ({ data }) => {
+  const [status, setStatus] = useState<OrderStatus>(data);
 
   return (
     <Stack>
@@ -26,11 +29,11 @@ const OrderOneStatus = () => {
             Статус
           </Typography>
           <Typography sx={{ flex: 1, fontWeight: 500, fontSize: "16px" }}>
-            {status === 0
+            {status === OrderStatus.CREATED
               ? "Ожидает доставки"
-              : status === 1
+              : status === OrderStatus.DELIVERY
               ? "В доставке"
-              : status === 2
+              : status === OrderStatus.SUCCESS
               ? "Доставлено"
               : null}
           </Typography>
@@ -43,21 +46,24 @@ const OrderOneStatus = () => {
 export default OrderOneStatus;
 
 interface StatusBoxesProps {
-  status: number;
+  status: OrderStatus;
 }
 
 const boxes = [
   {
     id: 0,
     icon: Inventory2RoundedIcon,
+    status: OrderStatus.CREATED,
   },
   {
     id: 1,
     icon: LocalShippingRoundedIcon,
+    status: OrderStatus.DELIVERY,
   },
   {
     id: 2,
     icon: InventoryRoundedIcon,
+    status: OrderStatus.SUCCESS,
   },
 ];
 
@@ -91,13 +97,13 @@ const StatusBoxes: FC<StatusBoxesProps> = ({ status }) => {
               height: "72px",
               borderRadius: "50%",
               backgroundColor:
-                status === row.id ? "primary.main" : "secondary.main",
+                status === row.status ? "primary.main" : "secondary.main",
             }}
           >
             <Icon
               component={row.icon}
               sx={{
-                color: status === row.id ? "common.white" : "primary.main",
+                color: status === row.status ? "common.white" : "primary.main",
               }}
             />
           </Stack>

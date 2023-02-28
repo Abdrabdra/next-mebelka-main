@@ -1,37 +1,14 @@
 import { Divider, Stack, Typography } from "@mui/material";
+import { IOneOrderMarket, OrderItem } from "@src/types/Order/IOrder";
 import numberWithSpaces from "@utils/numberWithSpaces";
 import { useRouter } from "next/router";
 import { FC } from "react";
 
-const data = [
-  {
-    id: 0,
-  },
-  {
-    id: 1,
-  },
-];
+interface Props {
+  data: IOneOrderMarket;
+}
 
-const tableTitles = [
-  {
-    title: "Стоимость товара",
-    text: `${numberWithSpaces(450000)}KZT`,
-  },
-  {
-    title: "Цвет",
-    text: "Черный",
-  },
-  {
-    title: "Колличество",
-    text: "1",
-  },
-  {
-    title: "Доставка",
-    text: numberWithSpaces(2160),
-  },
-];
-
-const OrderOneReceipt = () => {
+const OrderOneReceipt: FC<Props> = ({ data }) => {
   const router = useRouter();
 
   const handleNavigate = (id: number) => {
@@ -59,21 +36,21 @@ const OrderOneReceipt = () => {
       </Typography>
 
       <Stack spacing={6}>
-        {data.map((row) => (
+        {data.items.map((row) => (
           <Stack key={row.id} spacing={1.5}>
             <Stack
-              onClick={() => handleNavigate(row.id)}
+              onClick={() => handleNavigate(row.product.id)}
               direction="row"
               alignItems="center"
               justifyContent={"space-between"}
             >
               <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                Диван “Lanister”
+                {row.product.title}
               </Typography>
             </Stack>
 
             <Stack spacing={1}>
-              {tableTitles.map((row, index) => (
+              {tableData(row).map((row, index) => (
                 <Stack key={index}>
                   <StyledElement title={row.title} text={row.text} />
                   <Divider />
@@ -89,7 +66,7 @@ const OrderOneReceipt = () => {
           Стоимость заказа
         </Typography>
         <Typography sx={{ fontWeight: 600, fontSize: "16px" }}>
-          {numberWithSpaces(902160)}KZT
+          {numberWithSpaces(Number(data.totalPrice.toFixed(2)))}KZT
         </Typography>
       </Stack>
     </Stack>
@@ -114,4 +91,27 @@ const StyledElement: FC<ElementProps> = ({ title, text }) => {
       </Typography>
     </Stack>
   );
+};
+
+const tableData = (data: OrderItem) => {
+  const tableTitles = [
+    {
+      title: "Стоимость товара",
+      text: `${numberWithSpaces(Number(data.totalPrice.toFixed(2)))}KZT`,
+    },
+    {
+      title: "Цвет",
+      text: "Цвет",
+    },
+    {
+      title: "Колличество",
+      text: data.qty,
+    },
+    {
+      title: "Доставка",
+      text: numberWithSpaces(Number(0)),
+    },
+  ];
+
+  return tableTitles;
 };

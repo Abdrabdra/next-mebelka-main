@@ -21,6 +21,7 @@ import productFilterReducer from "./reducers/filter/productFilter/productFilter.
 //rtk
 import announcementApi from "./rtk-api/announcement-rtk/announcementApi";
 import applicationApi from "./rtk-api/application-rtk/applicationApi";
+import orderApi from "./rtk-api/order-rtk/orderApi";
 
 const persistConfig = {
   key: "root",
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
 
   [announcementApi.reducerPath]: announcementApi.reducer,
   [applicationApi.reducerPath]: applicationApi.reducer,
+  [orderApi.reducerPath]: orderApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -53,7 +55,11 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(announcementApi.middleware, applicationApi.middleware),
+    }).concat(
+      announcementApi.middleware,
+      applicationApi.middleware,
+      orderApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);

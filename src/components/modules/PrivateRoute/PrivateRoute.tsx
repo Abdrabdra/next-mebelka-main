@@ -50,9 +50,7 @@ const PrivateRoute: FC<Props> = ({ children }) => {
           handleNeedAuth();
           setIsNewQuery(false);
         } else {
-          setTimeout(() => {
-            setIsLogged(true);
-          }, 500);
+          setIsLogged(true);
           setIsNewQuery(false);
         }
       } else {
@@ -62,19 +60,7 @@ const PrivateRoute: FC<Props> = ({ children }) => {
     }
   }, [isNewQuery, status]);
 
-  console.log("isLogged: ", isLogged);
-
-  return (
-    <>
-      {is401 ? (
-        isLoading || isFetching || (!isLogged && <BaseLoader />)
-      ) : isLogged ? (
-        children
-      ) : (
-        <AuthBox />
-      )}
-    </>
-  );
+  return <>{isLogged ? children : isLoading ? <BaseLoader /> : <AuthBox />}</>;
 };
 
 export default PrivateRoute;

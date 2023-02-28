@@ -1,65 +1,14 @@
 import { Divider } from "@mui/material";
 import { Stack, Typography } from "@mui/material";
+import { IOneOrderItemProduct, OrderItem } from "@src/types/Order/IOrder";
 import { useRouter } from "next/router";
 import { FC } from "react";
 
-const data = [
-  {
-    id: 0,
-  },
-  {
-    id: 1,
-  },
-];
+interface Props {
+  data: OrderItem[];
+}
 
-const tableTitles = [
-  {
-    title: "Наименование",
-    text: `"Кровать "Олимпия" (2-х спальная) с подъёмным механизмом в уплотненном гобелене"`,
-  },
-  {
-    title: "Производство",
-    text: "Производство ZETA",
-  },
-  {
-    title: "Длина (mm)",
-    text: "2150",
-  },
-  {
-    title: "Ширина (mm)",
-    text: "2150",
-  },
-  {
-    title: "Высота (mm)",
-    text: "1850",
-  },
-  {
-    title: "Каркас",
-    text: "Дерево, фанера, ДСП",
-  },
-  {
-    title: "Декор",
-    text: "Окантовка",
-  },
-  {
-    title: "Подъемный механизм",
-    text: "Да",
-  },
-  {
-    title: "Ящики для белья",
-    text: "Да",
-  },
-  {
-    title: "Цвет",
-    text: "Черный",
-  },
-  {
-    title: "Колличество",
-    text: "2",
-  },
-];
-
-const OrderOneInfo = () => {
+const OrderOneInfo: FC<Props> = ({ data }) => {
   const router = useRouter();
 
   const handleNavigate = (id: number) => {
@@ -90,7 +39,7 @@ const OrderOneInfo = () => {
         {data.map((row) => (
           <Stack key={row.id} spacing={1.5}>
             <Stack spacing={1}>
-              {tableTitles.map((row, index) => (
+              {tableData(row.product, row.qty).map((row, index) => (
                 <Stack key={index}>
                   <StyledElement title={row.title} text={row.text} />
                   <Divider />
@@ -108,7 +57,7 @@ export default OrderOneInfo;
 
 interface ElementProps {
   title: string;
-  text: string;
+  text: string | number;
 }
 
 const StyledElement: FC<ElementProps> = ({ title, text }) => {
@@ -122,4 +71,31 @@ const StyledElement: FC<ElementProps> = ({ title, text }) => {
       </Typography>
     </Stack>
   );
+};
+
+const tableData = (data: IOneOrderItemProduct, qty: number) => {
+  const tableTitles = [
+    {
+      title: "Наименование",
+      text: data.title,
+    },
+    {
+      title: "Цена",
+      text: data.price,
+    },
+    {
+      title: "Скидка",
+      text: `${data.discount}%`,
+    },
+    {
+      title: "Описание",
+      text: data.description,
+    },
+    {
+      title: "Колличество",
+      text: qty,
+    },
+  ];
+
+  return tableTitles;
 };

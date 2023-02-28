@@ -11,10 +11,6 @@ import BasketTotalPayment from "./BasketTotalPayment";
 const BasketConfirmTotal = () => {
   const { data } = useGetCartQuery("");
 
-  const sda = useTypedSelector((state) => state.basket.orderAddress);
-
-  console.log("ORDER ADDRESS: ", sda);
-
   return (
     <Container>
       {data && (
