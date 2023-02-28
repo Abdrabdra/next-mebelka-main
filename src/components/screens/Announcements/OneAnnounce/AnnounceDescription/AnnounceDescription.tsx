@@ -20,8 +20,7 @@ const AnnounceDescription: FC<Props> = () => {
       <Typography
         sx={{ fontSize: "14px", fontWeight: 500, color: "secondary.500" }}
       >
-        Двухспальная кровать «Олимпия» - это, безусловно, выгодное приобретение
-        Просторная, уютная кровать снабжена
+        Нужно добавить описание
       </Typography>
     </Stack>
   );

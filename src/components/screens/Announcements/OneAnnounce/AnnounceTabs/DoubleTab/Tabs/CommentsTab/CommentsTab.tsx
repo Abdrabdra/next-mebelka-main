@@ -27,8 +27,6 @@ const CommentsTab: FC<Props> = ({ commentsCount }) => {
     productId: id,
   };
 
-  console.log(id);
-
   const { data, isLoading, isSuccess } = useGetFeedbackQuery(queryParams);
 
   return (

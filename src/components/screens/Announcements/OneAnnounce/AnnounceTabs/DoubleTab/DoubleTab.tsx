@@ -4,14 +4,15 @@ import { Box, Stack, Tab, Tabs } from "@mui/material";
 import { a11yProps, TabPanel } from "./TabConfig";
 import DetailsTab from "./Tabs/DetailsTab";
 import CommentsTab from "./Tabs/CommentsTab";
+import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
 
 interface Props {
-  details?: any;
+  data: IOneAnnouncement;
   commentsCount: number;
   forPreview?: boolean;
 }
 
-const DoubleTab: React.FC<Props> = ({ details, commentsCount, forPreview }) => {
+const DoubleTab: React.FC<Props> = ({ data, commentsCount, forPreview }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -32,11 +33,11 @@ const DoubleTab: React.FC<Props> = ({ details, commentsCount, forPreview }) => {
       </Box>
       <Box>
         <TabPanel value={value} index={0}>
-          <DetailsTab details={details} />
+          <DetailsTab details={data} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Комменты
-          <CommentsTab commentsCount={99} />
+          <CommentsTab commentsCount={commentsCount} />
         </TabPanel>
       </Box>
     </Stack>

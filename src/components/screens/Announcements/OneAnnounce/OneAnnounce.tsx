@@ -45,7 +45,7 @@ const OneAnnounce = () => {
               <AnnounceDescription />
               <AnnounceColors colors={data.colors} />
               <AnnounceAmount />
-              <AnnounceTabs />
+              <AnnounceTabs data={data} />
               <AnnounceRecomendations />
             </Stack>
           )}

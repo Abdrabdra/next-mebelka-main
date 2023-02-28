@@ -1,17 +1,35 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
+import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
 import numberWithSpaces from "@utils/numberWithSpaces";
+import { FC } from "react";
 
-const DetailsTab = ({ details }: any) => {
+interface Props {
+  details: IOneAnnouncement;
+}
+
+const DetailsTab: FC<Props> = ({ details }) => {
   const stateData = [
-    { id: 0, title: "Наименование", value: "Test" },
-    { id: 1, title: "Производство", value: "Test" },
-    { id: 2, title: "Длина (mm)", value: "Test" },
-    { id: 3, title: "Ширина (mm)", value: "Test" },
-    { id: 4, title: "Высота (mm)", value: "Test" },
-    { id: 5, title: "Каркас", value: "Test" },
-    { id: 6, title: "Декор", value: "Test" },
-    { id: 7, title: "Подъемный механизм", value: "Test" },
-    { id: 8, title: "Ящики для белья", value: "Test" },
+    { id: 0, title: "Наименование", value: details.title },
+    { id: 1, title: "Производство", value: "Производство" },
+    { id: 2, title: "Длина (mm)", value: details.info.length },
+    { id: 3, title: "Ширина (mm)", value: details.info.width },
+    { id: 4, title: "Высота (mm)", value: details.info.height },
+    {
+      id: 5,
+      title: "Каркас",
+      value: details.info.frames.map((row) => row.title).join(", "),
+    },
+    { id: 6, title: "Декор", value: details.info.decor.title },
+    {
+      id: 7,
+      title: "Подъемный механизм",
+      value: details.info.liftingMechanism ? "Да" : "Нет",
+    },
+    {
+      id: 8,
+      title: "Ящики для белья",
+      value: details.info.laundryBoxes ? "Да" : "Нет",
+    },
   ];
 
   return (

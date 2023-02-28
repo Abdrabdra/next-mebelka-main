@@ -1,7 +1,13 @@
 import { Stack } from "@mui/material";
+import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
+import { FC } from "react";
 import DoubleTab from "./DoubleTab";
 
-const AnnounceTabs = () => {
+interface Props {
+  data: IOneAnnouncement;
+}
+
+const AnnounceTabs: FC<Props> = ({ data }) => {
   return (
     <Stack
       sx={{
@@ -10,7 +16,7 @@ const AnnounceTabs = () => {
         padding: "16px",
       }}
     >
-      <DoubleTab commentsCount={99} />
+      <DoubleTab commentsCount={data.status.commentCount} data={data} />
     </Stack>
   );
 };
