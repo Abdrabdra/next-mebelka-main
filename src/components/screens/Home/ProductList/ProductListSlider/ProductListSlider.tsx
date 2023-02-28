@@ -11,19 +11,19 @@ import { useGetAnnouncementsQuery } from "@store/rtk-api/announcement-rtk/announ
 import { useTypedSelector } from "@store/index";
 
 const ProductListSlider = () => {
-  const filterProductValues = useTypedSelector(
-    (state) => state.productFilter.values
-  );
+  // const filterProductValues = useTypedSelector(
+  //   (state) => state.productFilter.values
+  // );
 
-  const queryWithFilterParams = {
-    ...filterProductValues,
-  };
+  // const queryWithFilterParams = {
+  //   ...filterProductValues,
+  // };
 
   const { data, isLoading, isFetching, isSuccess } = useGetAnnouncementsQuery(
-    queryWithFilterParams,
-    {
-      refetchOnMountOrArgChange: true,
-    }
+    // queryWithFilterParams,
+    // {
+    //   refetchOnMountOrArgChange: true,
+    // }
   );
 
   const ref = useRef<any>();

@@ -15,7 +15,7 @@ const TopDrawer: FC<Props> = ({ isBack }) => {
   return (
     <Stack
       sx={{
-        zIndex: 1000,
+        zIndex: 10,
         top: 0,
         bottom: "auto",
         position: "fixed",

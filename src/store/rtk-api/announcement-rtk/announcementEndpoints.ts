@@ -1,5 +1,8 @@
 import { IAnnouncementsResponse } from "@src/types/Announcements/IAnnouncement";
+import { IGetCategoryResponse } from "@src/types/Announcements/ICategory/ICategory";
 import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
+import { IProductColor } from "@src/types/Announcements/IProductInfo/IProductInfo";
+import { IGetRegion } from "@src/types/Announcements/IRegion/Region";
 import { ICreateCart, IGetCart } from "@src/types/Cart/ICart";
 import announcementApi from "./announcementApi";
 
@@ -97,6 +100,28 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       },
       providesTags: ["cart"],
     }),
+
+    getProductColor: builder.query<IProductColor[], any>({
+      query: () => ({
+        url: `product-info/color`,
+        method: "GET",
+      }),
+      providesTags: ["product-info-color"],
+    }),
+    getCity: builder.query<IGetRegion[], any>({
+      query: () => ({
+        url: `region`,
+      }),
+      providesTags: ["city"],
+    }),
+    getCategory: builder.query<IGetCategoryResponse, any>({
+      query: (arg) => ({
+        url: `category`,
+        params: { parentId: arg?.parentId },
+        method: "GET",
+      }),
+      providesTags: ["category"],
+    }),
   }),
 });
 
@@ -112,4 +137,8 @@ export const {
   useDeleteCartMutation,
   usePlusCartMutation,
   useMinceCartMutation,
+
+  useGetProductColorQuery,
+  useGetCityQuery,
+  useGetCategoryQuery,
 } = announcementEndpoints;

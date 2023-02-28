@@ -1,21 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitState {
+  // состояние: нет в бэке
+  // marks: number[] | null
+  // models: number[] | null
+
+  // cities: number[] | null
+
   helper: {
     reset: boolean;
+    parentCategoryId?: number;
   };
 
   values: {
     limit: number;
     page: number;
 
-    marks: number[];
-    models: number[];
+    colors: number[];
 
-    yearTo: string;
-    yearFrom: string;
-    orderByPriceASC: string;
-    orderByPriceDESC: string;
+    photo?: boolean;
+    discount?: boolean;
+
+    cityId?: number;
+    categoryId?: number;
+
     priceTo: string;
     priceFrom: string;
   };
@@ -24,37 +32,47 @@ interface IInitState {
 const initialState: IInitState = {
   helper: {
     reset: true,
+    parentCategoryId: undefined,
   },
 
   values: {
-    limit: 10,
     page: 1,
+    limit: 5,
 
-    marks: [],
-    models: [],
+    colors: [],
 
-    yearFrom: "",
-    yearTo: "",
-    orderByPriceASC: "",
-    orderByPriceDESC: "",
+    photo: undefined,
+    discount: undefined,
+
+    cityId: undefined,
+    categoryId: undefined,
+
     priceFrom: "",
     priceTo: "",
   },
 };
 
 const productFilterSlice = createSlice({
-  name: "productFilter",
+  name: "filterPorducts",
   initialState,
   reducers: {
-    setFilter: (state, { payload }) => {
+    setProductFilterHelper: (state, { payload }) => {
+      state.helper = { ...state.helper, ...payload };
+    },
+    setProductFilter: (state, { payload }) => {
       state.values = { ...state.values, ...payload };
     },
-    setFilterReset: (state) => {
+    setProductFilterReset: (state) => {
       state.values = initialState.values;
+      state.helper = initialState.helper;
     },
   },
 });
 
-export const { setFilter, setFilterReset } = productFilterSlice.actions;
+export const {
+  setProductFilterHelper,
+  setProductFilter,
+  setProductFilterReset,
+} = productFilterSlice.actions;
 
 export default productFilterSlice.reducer;

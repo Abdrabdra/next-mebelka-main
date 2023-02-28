@@ -1,12 +1,12 @@
-import { FilterButton } from "@components/ui/Buttons";
 import { MainInput } from "@components/ui/Inputs";
 import { InputAdornment, Stack } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
+import { ProductFilterButton } from "@components/modules/Filters/ProductFilter";
 
 const SearchBar = () => {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row">
       <MainInput
         placeholder="Поиск"
         height="60px"
@@ -18,7 +18,8 @@ const SearchBar = () => {
           ),
         }}
       />
-      <FilterButton />
+      
+      <ProductFilterButton withIcon />
     </Stack>
   );
 };

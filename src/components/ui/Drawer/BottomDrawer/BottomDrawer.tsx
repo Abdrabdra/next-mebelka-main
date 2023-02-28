@@ -17,7 +17,7 @@ const BottomDrawer = () => {
     router.pathname === "/profile" ? (
     <Stack
       sx={{
-        zIndex: 99999,
+        zIndex: 10,
         width: "100%",
         backgroundColor: "common.white",
         borderRadius: "20px 20px 0 0",

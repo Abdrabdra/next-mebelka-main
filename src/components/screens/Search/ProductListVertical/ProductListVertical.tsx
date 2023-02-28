@@ -7,19 +7,29 @@ import { INFO } from "@utils/theme/palette";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
 import mockPicture from "@assets/img/krovat_Olimpia.png";
+import { IAnnouncementsResponse } from "@src/types/Announcements/IAnnouncement";
+import { FC } from "react";
 
-const ProductListVertical = () => {
+interface Props {
+  data: IAnnouncementsResponse;
+}
+
+const ProductListVertical: FC<Props> = ({ data }) => {
   const router = useRouter();
 
   const handleClick = (value: number) => {
     router.push(`/announce/${value}`);
   };
 
+  const discountPrice = (price: number, discount: number) => {
+    return (discount && (price * (100 - discount)) / 100).toFixed(2);
+  };
+
   return (
     <Stack direction="row" sx={{ gap: "12px", flexWrap: "wrap" }}>
-      {[1, 2, 3, 4, 5].map((row) => (
+      {data.data.map((row) => (
         <Stack
-          key={row}
+          key={row.id}
           spacing={1.5}
           sx={{
             flex: `0 0 177px`,
@@ -44,10 +54,10 @@ const ProductListVertical = () => {
 
           <Stack spacing={1}>
             <Typography
-              onClick={() => handleClick(row)}
+              onClick={() => handleClick(row.id)}
               sx={{ color: "primary.main", letterSpacing: "1px" }}
             >
-              Диван “Lanister”
+              {row.title}
             </Typography>
 
             <Stack direction="row" spacing={1}>
@@ -59,13 +69,13 @@ const ProductListVertical = () => {
                   fontWeight: 500,
                 }}
               >
-                4.7
+                ОЦЕНКА
               </Typography>
               <Divider orientation="vertical" flexItem variant={"middle"} />
               <Typography
                 sx={{ color: "error.main", fontSize: "12px", fontWeight: 500 }}
               >
-                -70%
+                -{row.discount}%
               </Typography>
             </Stack>
           </Stack>
@@ -78,34 +88,38 @@ const ProductListVertical = () => {
                 letterSpacing: "1px",
               }}
             >
-              450 000тг
+              {row.discount
+                ? discountPrice(row.price, row.discount)
+                : row.price}
             </Typography>
-            <Typography
-              sx={{
-                alignSelf: "flex-end",
-                color: "info.400",
-                fontWeight: 300,
-                fontSize: "8px",
-                letterSpacing: "1px",
-                position: "relative",
+            {row.discount && (
+              <Typography
+                sx={{
+                  alignSelf: "flex-end",
+                  color: "info.400",
+                  fontWeight: 300,
+                  fontSize: "8px",
+                  letterSpacing: "1px",
+                  position: "relative",
 
-                "&:after": {
-                  content: '""',
-                  position: "absolute",
-                  width: "100%",
-                  height: "1px",
-                  backgroundColor: alpha(INFO[400], 0.7),
-                  opacity: 0.8,
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  marginTop: "auto",
-                  marginBottom: "auto",
-                },
-              }}
-            >
-              1 100 000тг
-            </Typography>
+                  "&:after": {
+                    content: '""',
+                    position: "absolute",
+                    width: "100%",
+                    height: "1px",
+                    backgroundColor: alpha(INFO[400], 0.7),
+                    opacity: 0.8,
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  },
+                }}
+              >
+                {row.price}
+              </Typography>
+            )}
           </Stack>
         </Stack>
       ))}

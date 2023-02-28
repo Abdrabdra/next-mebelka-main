@@ -39,7 +39,7 @@ const DrawerMenu: FC<Props> = ({ opened, handleOpen }) => {
       open={state}
       onClose={toggleDrawer(false)}
       sx={{
-        zIndex: 999999,
+        zIndex: 20,
         "& .MuiPaper-root": { borderRadius: "0 0 20px 0" },
       }}
     >
