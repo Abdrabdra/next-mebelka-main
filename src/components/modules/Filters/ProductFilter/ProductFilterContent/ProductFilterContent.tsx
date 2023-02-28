@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Container, Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
 
@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import AbsoluteBox from "@components/ui/AbsoluteBox";
 import { MainButton } from "@components/ui/Buttons";
 import { setProductFilter } from "@store/reducers/filter/productFilter/productFilter.slice";
+import { useTypedSelector } from "@store/index";
 
 interface Props {
   handleClose: () => void;
@@ -27,6 +28,8 @@ const ProductFilterContent: FC<Props> = ({ handleClose }) => {
     colors: [],
   });
 
+  const colors = useTypedSelector((state) => state.productFilter.values.colors);
+
   const handleChangeQuery = (value: object) => {
     setFilterValues((prev) => {
       return {
@@ -35,6 +38,10 @@ const ProductFilterContent: FC<Props> = ({ handleClose }) => {
       };
     });
   };
+
+  useEffect(() => {
+    handleChangeQuery({ colors: colors });
+  }, [colors]);
 
   const handleFilterSubmit = () => {
     dispatch(setProductFilter({ page: 1, ...filterValues }));

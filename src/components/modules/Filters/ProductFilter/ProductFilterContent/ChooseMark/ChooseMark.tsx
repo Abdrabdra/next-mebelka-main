@@ -5,6 +5,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import MarkList from "./MarkList";
 import { MainButton } from "@components/ui/Buttons";
 import { BaseModal } from "@components/ui/Modal";
+import { useTypedSelector } from "@store/index";
 
 interface Props {
   handleChangeQuery: (value: any) => void;
@@ -19,6 +20,10 @@ const ChooseMark: FC<Props> = ({ handleChangeQuery, chosenValues }) => {
   const handleModalClose = () => {
     setOpen(false);
   };
+
+  const selectedColors = useTypedSelector(
+    (state) => state.productFilter.values.colors
+  );
 
   return (
     <Stack>
@@ -38,7 +43,7 @@ const ChooseMark: FC<Props> = ({ handleChangeQuery, chosenValues }) => {
             },
           }}
         >
-          Выберите цвет
+          Выбрать цвет
         </MainButton>
 
         <BaseModal open={open} handleClose={handleModalClose}>
