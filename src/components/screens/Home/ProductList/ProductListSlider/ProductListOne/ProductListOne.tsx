@@ -10,6 +10,7 @@ import { FC } from "react";
 
 import StarIcon from "@mui/icons-material/Star";
 import numberWithSpaces from "@utils/numberWithSpaces";
+import { $image_api } from "@api/index";
 
 interface Props {
   data: IAnnouncement;
@@ -38,11 +39,13 @@ const ProductListOne: FC<Props> = ({ data }) => {
       }}
     >
       <Image
-        src={mockPicture} //imageApi
+        loader={() => `${$image_api}/${data.images[0].imageUrl}`}
+        src={`${$image_api}/${data.images[0].imageUrl}`}
         alt="Picture of the author"
+        height={116}
+        width={100}
         style={{
           width: "100%",
-          height: "116px",
           borderRadius: "12px",
           backgroundRepeat: "no-repeat",
           objectFit: "cover",

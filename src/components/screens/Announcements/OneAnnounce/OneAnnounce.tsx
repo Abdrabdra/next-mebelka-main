@@ -22,7 +22,7 @@ const OneAnnounce = () => {
 
   return (
     <Stack>
-      <AnnounceImage />
+      {data && <AnnounceImage data={data.images} />}
 
       <Stack
         sx={{
@@ -31,6 +31,7 @@ const OneAnnounce = () => {
           marginTop: "-20px",
           paddingTop: "12px",
           paddingBottom: "95px",
+          zIndex: 5,
         }}
       >
         <Container>

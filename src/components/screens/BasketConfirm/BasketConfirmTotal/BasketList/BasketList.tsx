@@ -15,6 +15,7 @@ import Image from "next/image";
 import mockPicture from "@assets/img/krovat_Olimpia.png";
 import { IGetCart } from "@src/types/Cart/ICart";
 import { INFO } from "@utils/theme/palette";
+import { $image_api } from "@api/index";
 
 interface Props {
   data: IGetCart[];
@@ -81,6 +82,8 @@ const BasketList: FC<Props> = ({ data }) => {
               }}
             >
               <Image
+                // loader={() => `${$image_api}/${row.product.images[0].imageUrl}`}
+                // src={`${$image_api}/${row.product.images[0].imageUrl}`}
                 src={mockPicture}
                 alt="Picture of the author"
                 style={{

@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "@components/screens/Home/Banner/BannerSlider/BannerSlider.style.scss";
+import "@components/screens/Announcements/OneAnnounce/AnnounceImage/ImageSlider/ImageSlider.style.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

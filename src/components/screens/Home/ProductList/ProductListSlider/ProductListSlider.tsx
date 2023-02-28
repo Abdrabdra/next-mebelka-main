@@ -20,10 +20,7 @@ const ProductListSlider = () => {
   // };
 
   const { data, isLoading, isFetching, isSuccess } = useGetAnnouncementsQuery(
-    // queryWithFilterParams,
-    // {
-    //   refetchOnMountOrArgChange: true,
-    // }
+    {}
   );
 
   const ref = useRef<any>();

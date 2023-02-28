@@ -9,6 +9,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import mockPicture from "@assets/img/krovat_Olimpia.png";
 import { IAnnouncementsResponse } from "@src/types/Announcements/IAnnouncement";
 import { FC } from "react";
+import { $image_api } from "@api/index";
 
 interface Props {
   data: IAnnouncementsResponse;
@@ -41,11 +42,13 @@ const ProductListVertical: FC<Props> = ({ data }) => {
           }}
         >
           <Image
-            src={mockPicture}
+            loader={() => `${$image_api}/${row.images[0].imageUrl}`}
+            src={`${$image_api}/${row.images[0].imageUrl}`}
             alt="Picture of the author"
+            height={116}
+            width={100}
             style={{
               width: "100%",
-              height: "116px",
               borderRadius: "12px",
               backgroundRepeat: "no-repeat",
               objectFit: "cover",
@@ -91,7 +94,8 @@ const ProductListVertical: FC<Props> = ({ data }) => {
             >
               {row.discount
                 ? discountPrice(row.price, row.discount)
-                : row.price}тг
+                : row.price}
+              тг
             </Typography>
             {row.discount && (
               <Typography

@@ -18,6 +18,7 @@ import {
   usePlusCartMutation,
 } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
 import { INFO } from "@utils/theme/palette";
+import { $image_api } from "@api/index";
 
 interface Props {
   data: IGetCart;
@@ -84,6 +85,8 @@ const BasketListOne: FC<Props> = ({ data }) => {
         }}
       >
         <Image
+          // loader={() => `${$image_api}/${data?.product?.images[0]?.imageUrl}`}
+          // src={`${$image_api}/${data?.product?.images[0]?.imageUrl}`}
           src={mockPicture}
           alt="Picture of the author"
           style={{

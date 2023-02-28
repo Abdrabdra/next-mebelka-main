@@ -1,3 +1,5 @@
+import { IImages } from "../Announcements/IOneAnnouncement";
+
 export interface ICreateCart {
   qty: number;
   productId: number;
@@ -13,5 +15,6 @@ export interface IGetCart {
     price: number;
     discount: number;
     description: string;
+    images: IImages[];
   };
 }
