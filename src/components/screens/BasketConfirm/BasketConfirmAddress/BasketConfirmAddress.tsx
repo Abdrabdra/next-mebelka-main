@@ -4,9 +4,7 @@ import AddressForm from "./AddressForm";
 const BasketConfirmAddress = () => {
   return (
     <Container>
-      <Stack>
-        <AddressForm />
-      </Stack>
+      <AddressForm />
     </Container>
   );
 };
