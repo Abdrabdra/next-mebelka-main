@@ -4,6 +4,7 @@ import { IOneAnnouncement } from "@src/types/Announcements/IOneAnnouncement";
 import { IProductColor } from "@src/types/Announcements/IProductInfo/IProductInfo";
 import { IGetRegion } from "@src/types/Announcements/IRegion/Region";
 import { ICreateCart, IGetCart } from "@src/types/Cart/ICart";
+import { IFeedbackResponse } from "@src/types/Feedback/IFeedback";
 import announcementApi from "./announcementApi";
 
 export const announcementEndpoints = announcementApi.injectEndpoints({
@@ -24,7 +25,7 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       providesTags: ["announcements"],
     }),
 
-    getFeedback: builder.query<any, object>({
+    getFeedback: builder.query<IFeedbackResponse, object>({
       query: (arg) => {
         return {
           url: `/feedback`,
@@ -33,7 +34,14 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       },
       providesTags: ["feedback"],
     }),
-    createFeedback: builder.mutation<any, any>({
+    createFeedback: builder.mutation<
+      any,
+      {
+        comment: string;
+        star: number;
+        productId: number;
+      }
+    >({
       query: (body) => {
         return {
           url: `/feedback`,

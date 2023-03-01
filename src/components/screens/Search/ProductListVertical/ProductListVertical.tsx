@@ -42,8 +42,16 @@ const ProductListVertical: FC<Props> = ({ data }) => {
           }}
         >
           <Image
-            loader={() => `${$image_api}/${row.images[0].imageUrl}`}
-            src={`${$image_api}/${row.images[0].imageUrl}`}
+            loader={
+              row.images.length > 0
+                ? () => `${$image_api}/${row.images[0].imageUrl}`
+                : undefined
+            }
+            src={
+              row.images.length > 0
+                ? `${$image_api}/${row.images[0].imageUrl}`
+                : ""
+            }
             alt="Picture of the author"
             height={116}
             width={100}

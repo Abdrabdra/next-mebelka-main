@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Stack, Tab, Tabs } from "@mui/material";
+import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
 
 import { a11yProps, TabPanel } from "./TabConfig";
 import DetailsTab from "./Tabs/DetailsTab";
@@ -24,11 +24,7 @@ const DoubleTab: React.FC<Props> = ({ data, commentsCount, forPreview }) => {
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
           <Tab label="Подробнее" {...a11yProps(0)} sx={{ flex: "1" }} />
-          <Tab
-            label={`Отзывы (${commentsCount})`}
-            {...a11yProps(1)}
-            sx={{ flex: "1" }}
-          />
+          <Tab label={`Отзывы`} {...a11yProps(1)} sx={{ flex: "1" }} />
         </Tabs>
       </Box>
       <Box>
@@ -36,8 +32,9 @@ const DoubleTab: React.FC<Props> = ({ data, commentsCount, forPreview }) => {
           <DetailsTab details={data} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Комменты
-          <CommentsTab commentsCount={commentsCount} />
+          <Stack spacing={2}>
+            <CommentsTab commentsCount={commentsCount} />
+          </Stack>
         </TabPanel>
       </Box>
     </Stack>

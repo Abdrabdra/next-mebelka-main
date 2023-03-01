@@ -18,7 +18,7 @@ interface Props {
   commentsCount: number;
 }
 
-const CommentsTab: FC<Props> = ({ commentsCount }) => {
+const CommentsTab: FC<Props> = () => {
   const router = useRouter();
 
   const { id } = router.query;
@@ -31,7 +31,9 @@ const CommentsTab: FC<Props> = ({ commentsCount }) => {
 
   return (
     <Stack spacing={4}>
-      {commentsCount === 0 ? (
+      <CommentsTabCreate />
+
+      {data?.data.length === 0 ? (
         <Stack
           justifyContent="center"
           alignItems="center"
@@ -48,12 +50,10 @@ const CommentsTab: FC<Props> = ({ commentsCount }) => {
         <CommentsTabSkeleton />
       ) : isSuccess ? (
         <Stack spacing={2}>
-          <CommentsTabCreate />
-
           <Stack spacing={4}>
-            {/* {data.data.map((row) => (
+            {data.data.map((row) => (
               <CommentsTabOne key={row.id} row={row} />
-            ))} */}
+            ))}
           </Stack>
         </Stack>
       ) : (

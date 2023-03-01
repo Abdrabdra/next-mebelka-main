@@ -13,16 +13,16 @@ interface Props {
 
 const CommentsTabCreate: FC<Props> = ({ parentCommentId }) => {
   const router = useRouter();
-  const { announceId } = router.query;
+  const { id } = router.query;
 
   const [create] = useCreateFeedbackMutation();
 
-  const [value, setValue] = useState<number | null>(2);
+  const [value, setValue] = useState<number>(1);
 
-  const body = announceId && {
+  const body = id && {
     comment: "",
-    star: 0,
-    productId: Number(announceId),
+    star: value,
+    productId: Number(id),
   };
 
   return (
@@ -46,7 +46,9 @@ const CommentsTabCreate: FC<Props> = ({ parentCommentId }) => {
                 name="simple-controlled"
                 value={value}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  if (newValue !== null && newValue > 0) {
+                    setValue(newValue);
+                  }
                 }}
               />
               <MainInput
