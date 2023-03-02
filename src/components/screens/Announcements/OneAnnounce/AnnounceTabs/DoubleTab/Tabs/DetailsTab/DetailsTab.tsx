@@ -9,26 +9,26 @@ interface Props {
 
 const DetailsTab: FC<Props> = ({ details }) => {
   const stateData = [
-    { id: 0, title: "Наименование", value: details.title },
+    { id: 0, title: "Наименование", value: details?.title },
     { id: 1, title: "Производство", value: "Производство" },
-    { id: 2, title: "Длина (mm)", value: details.info.length },
-    { id: 3, title: "Ширина (mm)", value: details.info.width },
-    { id: 4, title: "Высота (mm)", value: details.info.height },
+    { id: 2, title: "Длина (mm)", value: details?.info?.length },
+    { id: 3, title: "Ширина (mm)", value: details?.info?.width },
+    { id: 4, title: "Высота (mm)", value: details?.info?.height },
     {
       id: 5,
       title: "Каркас",
-      value: details.info.frames.map((row) => row.title).join(", "),
+      value: details?.info?.frames.map((row) => row?.title).join(", "),
     },
-    { id: 6, title: "Декор", value: details.info.decor.title },
+    { id: 6, title: "Декор", value: details?.info?.decor?.title },
     {
       id: 7,
       title: "Подъемный механизм",
-      value: details.info.liftingMechanism ? "Да" : "Нет",
+      value: details?.info?.liftingMechanism ? "Да" : "Нет",
     },
     {
       id: 8,
       title: "Ящики для белья",
-      value: details.info.laundryBoxes ? "Да" : "Нет",
+      value: details?.info?.laundryBoxes ? "Да" : "Нет",
     },
   ];
 

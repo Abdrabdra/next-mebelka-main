@@ -64,7 +64,7 @@ const OrderOneBox: FC<Props> = ({ data }) => {
                 <Stack
                   direction={"row"}
                   justifyContent="space-between"
-                  onClick={() => handleNavigate(1)}
+                  onClick={() => handleNavigate(item.product.id)}
                 >
                   <Typography
                     sx={{

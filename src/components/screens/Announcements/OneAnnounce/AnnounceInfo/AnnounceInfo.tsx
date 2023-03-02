@@ -28,6 +28,8 @@ const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
         {title}
       </Typography>
 
+      <Stack sx={{}}>asdasd</Stack>
+
       <Stack direction="row" alignItems={"center"} spacing={1}>
         <Icon component={StarRateIcon} />
         <Typography

@@ -7,6 +7,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CloseIcon from "@mui/icons-material/Close";
 import CommentsTabCreate from "../CommentsTabCreate";
 import { IOneFeedback } from "@src/types/Feedback/IFeedback";
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 
 interface Props {
   row: IOneFeedback;
@@ -63,6 +65,19 @@ const CommentsTabOne: FC<Props> = ({ row }) => {
             <FavoriteBorderIcon />
           </IconButton>
         </Stack>
+
+        <Stack>
+          <Rating
+            name="text-feedback"
+            value={row.star}
+            readOnly
+            precision={0.5}
+            emptyIcon={
+              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+            }
+          />
+        </Stack>
+
         <Typography
           sx={{
             color: "secondary.900",
@@ -72,62 +87,7 @@ const CommentsTabOne: FC<Props> = ({ row }) => {
         >
           {comment}
         </Typography>
-        {/* {!isReplyClick && (
-          <Box sx={{ width: "100%", display: "flex", justifyContent: "end" }}>
-            <Button
-              onClick={handleReplyClick}
-              sx={{
-                width: "60px",
-                height: "20px",
-                fontSize: "14px",
-                fontWeight: 500,
-                textDecoration: "underline",
-              }}
-            >
-              Ответить
-            </Button>
-          </Box>
-        )}
-
-        {isReplyClick && <CommentsTabCreate parentCommentId={id} />} */}
       </Stack>
-      {/* {Number(subCount) ? (
-        <Button
-          onClick={handleClick}
-          endIcon={isOpen && <CloseIcon />}
-          sx={{
-            justifyContent: "flex-start",
-            width: "146px",
-            height: "20px",
-            fontSize: "14px",
-            fontWeight: 500,
-            textDecoration: isOpen ? "none" : "underline",
-            color: isOpen ? "grey.800" : "primary",
-          }}
-        >
-          {isOpen ? `${subCount} комментарий` : "Посмотреть ответы"}
-        </Button>
-      ) : null} */}
-
-      {/* {isOpen ? (
-        <Box
-          sx={{
-            paddingLeft: "50px",
-            paddingBottom: "10px",
-            paddingTop: "5px",
-          }}
-        >
-          {isLoading ? (
-            <CommentsTabOneSkeleton />
-          ) : isSuccess ? (
-            <Stack spacing={4}>
-              {data.data.map((row) => (
-                <CommentsTabOne key={row.id} row={row} />
-              ))}
-            </Stack>
-          ) : null}
-        </Box>
-      ) : null} */}
     </Stack>
   );
 };

@@ -15,52 +15,54 @@ const PrivateRoute: FC<Props> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();
   const token = localStorage.getItem("access_token");
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const [isLogged, setIsLogged] = useState(false);
 
-  const { refetch, isSuccess, isError, error, status, isLoading, isFetching } =
-    useGetCartQuery("");
-  useEffect(() => {
-    refetch();
-  }, []);
+  // const [isLogged, setIsLogged] = useState(false);
 
-  const handleNeedAuth = () => {
-    setIsLogged(false);
-    dispatch(logout());
-  };
+  // const { refetch, isSuccess, isError, error, status, isLoading, isFetching } =
+  //   useGetCartQuery("");
+  // useEffect(() => {
+  //   refetch();
+  // }, []);
 
-  const [isNewQuery, setIsNewQuery] = useState(false);
+  // const handleNeedAuth = () => {
+  //   setIsLogged(false);
+  //   dispatch(logout());
+  // };
 
-  useEffect(() => {
-    if (status === "pending") {
-      setIsNewQuery(true);
-    }
-  }, [status]);
+  // const [isNewQuery, setIsNewQuery] = useState(false);
 
-  const [is401, setIs401] = useState(false);
-  useEffect(() => {
-    if (error && "status" in error && error.status === 401) {
-      setIs401(true);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (status === "pending") {
+  //     setIsNewQuery(true);
+  //   }
+  // }, [status]);
 
-  useEffect(() => {
-    if (isNewQuery && (status === "rejected" || status === "fulfilled")) {
-      if (isAuth && token) {
-        if (isError) {
-          handleNeedAuth();
-          setIsNewQuery(false);
-        } else {
-          setIsLogged(true);
-          setIsNewQuery(false);
-        }
-      } else {
-        handleNeedAuth();
-        setIsNewQuery(false);
-      }
-    }
-  }, [isNewQuery, status]);
+  // const [is401, setIs401] = useState(false);
+  // useEffect(() => {
+  //   if (error && "status" in error && error.status === 401) {
+  //     setIs401(true);
+  //   }
+  // }, [error]);
 
-  return <>{isLogged ? children : isLoading ? <BaseLoader /> : <AuthBox />}</>;
+  // useEffect(() => {
+  //   if (isNewQuery && (status === "rejected" || status === "fulfilled")) {
+  //     if (isAuth && token) {
+  //       if (isError) {
+  //         handleNeedAuth();
+  //         setIsNewQuery(false);
+  //       } else {
+  //         setIsLogged(true);
+  //         setIsNewQuery(false);
+  //       }
+  //     } else {
+  //       handleNeedAuth();
+  //       setIsNewQuery(false);
+  //     }
+  //   }
+  // }, [isNewQuery, status]);
+
+  return <>{isAuth ? children : <AuthBox />}</>;
+  // return <>{isLogged ? children : isLoading ? <BaseLoader /> : <AuthBox />}</>;
 };
 
 export default PrivateRoute;

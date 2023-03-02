@@ -1,9 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "../rtkApi";
+import { baseQuery, baseQueryWithReauth } from "../rtkApi";
 
 export default createApi({
   reducerPath: "announcementApi",
-  baseQuery: baseQuery,
+  baseQuery: baseQueryWithReauth,
   tagTypes: [
     "announcements",
     "feedback",
