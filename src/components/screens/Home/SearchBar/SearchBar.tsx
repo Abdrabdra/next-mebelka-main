@@ -18,7 +18,7 @@ const SearchBar = () => {
           ),
         }}
       />
-      
+
       <ProductFilterButton withIcon />
     </Stack>
   );

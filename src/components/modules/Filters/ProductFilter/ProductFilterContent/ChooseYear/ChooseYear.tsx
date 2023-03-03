@@ -1,42 +1,42 @@
-import { Formik } from "formik"
-import { Stack, Typography } from "@mui/material"
+import { Formik } from "formik";
+import { Stack, Typography } from "@mui/material";
 
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react";
 
 interface Props {
-	handleChangeQuery: (value: any) => void
+  handleChangeQuery: (value: any) => void;
 }
 
 const ChooseYear: FC<Props> = ({ handleChangeQuery }) => {
-	// const selectedYearFrom = useTypedSelector(
-	// 	(state) => state.filter.values.yearFrom
-	// )
-	// const selectedYearTo = useTypedSelector((state) => state.filter.values.yearTo)
+  // const selectedYearFrom = useTypedSelector(
+  // 	(state) => state.filter.values.yearFrom
+  // )
+  // const selectedYearTo = useTypedSelector((state) => state.filter.values.yearTo)
 
-	// const [year, setYear] = useState<any>({
-	// 	yearFrom: selectedYearFrom,
-	// 	yearTo: selectedYearTo
-	// })
+  // const [year, setYear] = useState<any>({
+  // 	yearFrom: selectedYearFrom,
+  // 	yearTo: selectedYearTo
+  // })
 
-	// const handleYearChange = (e: any, type: "yearFrom" | "yearTo") => {
-	// 	const { value } = e.target
+  // const handleYearChange = (e: any, type: "yearFrom" | "yearTo") => {
+  // 	const { value } = e.target
 
-	// 	if (type === "yearFrom") {
-	// 		setYear({ yearFrom: value })
-	// 	}
-	// 	if (type === "yearTo") {
-	// 		setYear({ yearTo: value })
-	// 	}
-	// }
+  // 	if (type === "yearFrom") {
+  // 		setYear({ yearFrom: value })
+  // 	}
+  // 	if (type === "yearTo") {
+  // 		setYear({ yearTo: value })
+  // 	}
+  // }
 
-	// useEffect(() => {
-	// 	handleChangeQuery(year)
-	// }, [year])
+  // useEffect(() => {
+  // 	handleChangeQuery(year)
+  // }, [year])
 
-	return (
-		<Stack>
-			<Typography>Год выпуска (Г.)</Typography>
-			{/* <Stack direction={"row"} spacing={2.5}>
+  return (
+    <Stack>
+      <Typography>Год выпуска (Г.)</Typography>
+      {/* <Stack direction={"row"} spacing={2.5}>
 				<Stack>
 					<Typography>От</Typography>
 					<StyledMainInput
@@ -54,8 +54,8 @@ const ChooseYear: FC<Props> = ({ handleChangeQuery }) => {
 					/>
 				</Stack>
 			</Stack> */}
-		</Stack>
-	)
-}
+    </Stack>
+  );
+};
 
-export default ChooseYear
+export default ChooseYear;

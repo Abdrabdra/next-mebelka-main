@@ -1,1 +1,1 @@
-export { default } from "./ChooseMark"
+export { default } from "./ChooseMark";

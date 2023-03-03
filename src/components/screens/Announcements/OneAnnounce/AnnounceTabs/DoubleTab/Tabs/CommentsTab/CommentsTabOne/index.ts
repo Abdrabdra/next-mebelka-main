@@ -1,1 +1,1 @@
-export { default } from "./CommentsTabOne"
+export { default } from "./CommentsTabOne";

@@ -1,1 +1,1 @@
-export { default } from "./ChooseYear"
+export { default } from "./ChooseYear";
