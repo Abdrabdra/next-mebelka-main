@@ -25,6 +25,7 @@ const Orders = () => {
         {data &&
           data.data.map((row) => (
             <Stack
+              key={row.id}
               spacing={1}
               onClick={() => hanldeNavigate(row.id)}
               sx={{

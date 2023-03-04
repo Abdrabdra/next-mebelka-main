@@ -29,7 +29,7 @@ const BasketList: FC<Props> = ({ data }) => {
             Корзина Пуста
           </Stack>
         ) : (
-          data.map((row) => <BasketListOne data={row} />)
+          data.map((row) => <BasketListOne key={row.id} data={row} />)
         )}
       </Stack>
     </Container>

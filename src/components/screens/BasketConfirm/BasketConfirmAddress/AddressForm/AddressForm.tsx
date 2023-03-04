@@ -79,7 +79,9 @@ const AddressForm = () => {
                   >
                     {data?.map((row) =>
                       row.cities.map((city) => (
-                        <MenuItem value={city.id}>{city.title}</MenuItem>
+                        <MenuItem key={city.id} value={city.id}>
+                          {city.title}
+                        </MenuItem>
                       ))
                     )}
                   </Select>

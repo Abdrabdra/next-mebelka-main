@@ -64,6 +64,7 @@ const BasketList: FC<Props> = ({ data }) => {
       ) : (
         data.map((row) => (
           <Stack
+            key={row.id}
             spacing={2}
             direction="row"
             alignItems="center"

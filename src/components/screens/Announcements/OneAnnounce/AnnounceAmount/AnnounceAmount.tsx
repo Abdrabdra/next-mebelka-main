@@ -15,10 +15,12 @@ const AnnounceAmount = () => {
 
   useEffect(() => {
     dispatch(setQty(1));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     dispatch(setQty(state));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const handleDecrement = () => {

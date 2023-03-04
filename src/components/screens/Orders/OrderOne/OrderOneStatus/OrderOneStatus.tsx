@@ -72,6 +72,7 @@ const StatusBoxes: FC<StatusBoxesProps> = ({ status }) => {
     <Stack direction="row">
       {boxes.map((row) => (
         <Stack
+          key={row.id}
           alignItems="center"
           direction="row"
           sx={{

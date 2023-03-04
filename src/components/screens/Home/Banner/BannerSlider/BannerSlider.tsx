@@ -1,6 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import Image from "next/image";
+
+import mockPicture from "@assets/img/krovat_Olimpia.png";
 
 const banners = [
   {
@@ -41,13 +44,13 @@ const BannerSlider = () => {
                 borderRadius: "12px",
               }}
             >
-              <Box>
-                <img
-                  src={""}
-                  alt={"Banner Background"}
-                  style={{ height: "100%", borderBottomLeftRadius: "12px" }}
-                />
-              </Box>
+              <Image
+                src={mockPicture}
+                width={100}
+                height={100}
+                alt={"bannerImage"}
+                style={{ width: "100%", height: "100%" }}
+              />
               <Box
                 sx={{
                   display: "flex",

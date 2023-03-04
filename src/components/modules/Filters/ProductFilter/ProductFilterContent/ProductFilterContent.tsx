@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { Container, Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
 
@@ -30,17 +30,18 @@ const ProductFilterContent: FC<Props> = ({ handleClose }) => {
 
   const colors = useTypedSelector((state) => state.productFilter.values.colors);
 
-  const handleChangeQuery = (value: object) => {
+  const handleChangeQuery = useCallback((value: object) => {
     setFilterValues((prev) => {
       return {
         ...prev,
         ...value,
       };
     });
-  };
+  }, []);
 
   useEffect(() => {
     handleChangeQuery({ colors: colors });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colors]);
 
   const handleFilterSubmit = () => {

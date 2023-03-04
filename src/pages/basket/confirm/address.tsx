@@ -14,6 +14,7 @@ const BasketConfirmAddressPage = () => {
     if (data?.length === 0) {
       router.push("/basket");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (

@@ -21,6 +21,7 @@ const AnnounceColors: FC<Props> = ({ colors }) => {
       <Stack direction="row" spacing={1.5}>
         {colors.map((row) => (
           <Box
+            key={row.id}
             sx={{
               width: "30px",
               height: "30px",

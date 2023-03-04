@@ -75,6 +75,7 @@ const ChoosePrice: FC<Props> = ({ handleChangeQuery }) => {
 
   useEffect(() => {
     handleChangeQuery({ ...price });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price]);
 
   // useEffect(() => {

@@ -23,6 +23,7 @@ const MarkList: FC<Props> = ({ handleChangeQuery, chosenValues }) => {
 
   useEffect(() => {
     handleChangeQuery({ colors: marks });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [marks]);
 
   return (

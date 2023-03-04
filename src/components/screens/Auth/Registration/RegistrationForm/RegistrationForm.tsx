@@ -39,6 +39,7 @@ const RegistrationForm = () => {
         setStatus(ActionsEnum.IDLE);
       }, 3000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   // form

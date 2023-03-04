@@ -24,6 +24,7 @@ const OrderOneBox: FC<Props> = ({ data }) => {
       {data.map((market) =>
         market.map((item) => (
           <Stack
+            key={item.id}
             direction={"row"}
             alignItems="center"
             spacing={2}
