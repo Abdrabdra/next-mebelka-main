@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -39,6 +40,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "sass": "^1.57.1"
   }

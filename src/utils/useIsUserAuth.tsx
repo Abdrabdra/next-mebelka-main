@@ -1,5 +1,4 @@
-import { AppDispatch, useTypedSelector } from "@store/index";
-import { useDispatch } from "react-redux";
+import { useTypedSelector } from "@store/index";
 
 export function useIsUserAuth() {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
