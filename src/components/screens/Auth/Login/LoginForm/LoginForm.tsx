@@ -27,7 +27,7 @@ const LoginForm = () => {
     onSubmit: async (values) => {
       dispatch(login(values));
     },
-    validationSchema: LoginSchema,
+    // validationSchema: LoginSchema,
   });
 
   const { values, errors, handleChange, handleSubmit } = formik;
