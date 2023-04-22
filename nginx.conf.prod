@@ -9,8 +9,7 @@ server {
         allow all;
         root /var/www/html;
     }
-    return 301 https://loom.kz$request_uri;
+    proxy_pass http://api:3000;
 }
-
 
 
