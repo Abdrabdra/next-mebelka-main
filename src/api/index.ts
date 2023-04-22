@@ -8,6 +8,7 @@ export const $image_api = "https://mebel.ams3.digitaloceanspaces.com";
 
 export const $api = axios.create({
   baseURL: DEV_API,
+  withCredentials: true
 });
 
 $api.interceptors.request.use((config) => {
