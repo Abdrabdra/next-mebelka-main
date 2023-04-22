@@ -9,9 +9,29 @@ server {
         allow all;
         root /var/www/html;
     }
-    location / {
-    proxy_pass http://api:3000;
-    }
+    return 301 https://loom.kz$request_uri;
 }
 
 
+server {
+   listen 443 ssl http2;
+   listen [::]:443  ssl http2;
+   server_name loom.kz www.loom.kz;
+   client_max_body_size 100M;
+   server_tokens off;
+   ssl_certificate /etc/letsencrypt/live/loom.kz/fullchain.pem;
+   ssl_certificate_key /etc/letsencrypt/live/loom.kz/privkey.pem;
+
+   location / {
+       add_header 'Access-Control-Allow-Origin' '*' always;
+       add_header 'Access-Control-Allow-Credentials' 'true';
+       add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+       add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+       proxy_set_header        X-Real-IP       $remote_addr;
+       proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header   Upgrade $http_upgrade;
+       proxy_set_header Connection "Upgrade";
+       proxy_set_header Host $host;
+       proxy_pass http://api:3000;
+   }
+}
