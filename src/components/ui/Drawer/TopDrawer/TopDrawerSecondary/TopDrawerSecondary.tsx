@@ -11,6 +11,8 @@ const TopDrawerSecondary = () => {
     router.back();
   };
 
+  console.log("router: ", router.pathname);
+
   return router.pathname === "/basket/confirm/address" ||
     router.pathname === "/basket/confirm/payment" ||
     router.pathname === "/basket/confirm/total" ? (
@@ -43,22 +45,23 @@ const TopDrawerSecondary = () => {
       direction="row"
       justifyContent="center"
       alignItems="center"
-      sx={{ height: "64px" }}
+      sx={{ height: "64px", position: "relative" }}
     >
-      {router.pathname === "/application" && (
-        <Box
-          sx={{
-            position: "absolute",
-            left: 0,
-          }}
-        >
+      {(router.pathname === "/application" ||
+        router.pathname === "/category" ||
+        router.pathname === "/category/[id]") && (
+        <Box sx={{ position: "absolute", left: 0 }}>
           <IconButton onClick={handleNavigate} sx={{ color: "common.black" }}>
             <ArrowBackIosRoundedIcon />
           </IconButton>
         </Box>
       )}
       <Typography sx={{ fontSize: "16px", letterSpacing: "1px" }}>
-        {router.pathname === "/search"
+        {router.pathname === "/category"
+          ? "Категории"
+          : router.pathname === "/category/[id]"
+          ? "Подкатегории"
+          : router.pathname === "/search"
           ? "Поиск"
           : router.pathname === "/orders"
           ? "Мои заказы"

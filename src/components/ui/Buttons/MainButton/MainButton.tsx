@@ -8,6 +8,8 @@ export type CustomButtonProps = {
   fsize?: string;
   tcolor?: string;
   jc?: string;
+  hovertcolor?: string;
+  hoverbgcolor?: string;
 } & ButtonProps;
 
 const MainButton = styled((props: CustomButtonProps) => (
@@ -21,6 +23,14 @@ const MainButton = styled((props: CustomButtonProps) => (
       fontSize: props.fsize ? props.fsize : "16px",
       color: props.tcolor ? props.tcolor : "#fff",
       justifyContent: props.jc ? props.jc : "center",
+
+      "&:focus, &:hover": {
+        borderColor: "secondary.300",
+        backgroundColor: props.hoverbgcolor
+          ? props.hoverbgcolor
+          : "secondary.300",
+        color: props.hovertcolor ? props.hovertcolor : "#fff",
+      },
     }}
   />
 ))(({ theme }) => ({

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AuthService } from "@service/auth/auth.service";
 
-export const DEV_API = "http://167.99.132.27/";
+export const DEV_API = "https://api.loom.kz/";
 // export const PROD_API = "https://";
 
 export const $image_api = "https://mebel.ams3.digitaloceanspaces.com";

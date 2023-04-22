@@ -48,7 +48,7 @@ const ContentCategories = () => {
   const router = useRouter();
 
   const handleNavigate = () => {
-    router.push("/search");
+    router.push("/category");
   };
 
   const handleApplication = () => {
