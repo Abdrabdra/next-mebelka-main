@@ -9,7 +9,9 @@ server {
         allow all;
         root /var/www/html;
     }
+    location / {
     proxy_pass http://api:3000;
+    }
 }
 
 
