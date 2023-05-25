@@ -9,10 +9,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 export default function HomePage() {
-  useEffect(() => {
-    store.dispatch(refresh());
-  }, []);
-
   return (
     <MainLayout>
       <Home />

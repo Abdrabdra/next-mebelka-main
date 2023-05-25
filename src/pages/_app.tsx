@@ -12,8 +12,14 @@ import "swiper/css/navigation";
 
 import "@components/screens/Home/Banner/BannerSlider/BannerSlider.style.scss";
 import "@components/screens/Announcements/OneAnnounce/AnnounceImage/ImageSlider/ImageSlider.style.scss";
+import { useEffect } from "react";
+import { refresh } from "@store/reducers/auth/auth.action";
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    store.dispatch(refresh());
+  }, []);
+
   return (
     <Provider store={store}>
       <ThemeProvider>
