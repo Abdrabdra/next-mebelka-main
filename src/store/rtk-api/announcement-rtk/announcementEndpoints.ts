@@ -103,6 +103,10 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       query: () => {
         return {
           url: `/market`,
+          params: {
+            page: 1,
+            limit: 200,
+          },
           // params: { ...arg },
         };
       },
@@ -113,19 +117,27 @@ export const announcementEndpoints = announcementApi.injectEndpoints({
       query: () => ({
         url: `product-info/color`,
         method: "GET",
+        params: {
+          page: 1,
+          limit: 200,
+        },
       }),
       providesTags: ["product-info-color"],
     }),
     getCity: builder.query<IGetRegion[], any>({
       query: () => ({
         url: `region`,
+        params: {
+          page: 1,
+          limit: 200,
+        },
       }),
       providesTags: ["city"],
     }),
     getCategory: builder.query<IGetCategoryResponse, any>({
       query: (arg) => ({
         url: `category`,
-        params: { parentId: arg?.parentId },
+        params: { parentId: arg?.parentId, page: 1, limit: 200 },
         method: "GET",
       }),
       providesTags: ["category"],
