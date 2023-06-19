@@ -3,8 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Image from "next/image";
 
-import mockPicture from "@assets/img/krovat_Olimpia.png";
-
 const banners = [
   {
     title: "До конца декабря",
@@ -45,9 +43,9 @@ const BannerSlider = () => {
               }}
             >
               <Image
-                src={mockPicture}
-                width={100}
-                height={100}
+                src={"/pictures/banner_main.jpg"}
+                width={1920}
+                height={1080}
                 alt={"bannerImage"}
                 style={{
                   width: "100%",
