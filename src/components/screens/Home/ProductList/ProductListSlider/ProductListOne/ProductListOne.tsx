@@ -23,8 +23,9 @@ const ProductListOne: FC<Props> = ({ data }) => {
     router.push(`/announce/${value}`);
   };
 
-  const discountedPrice =
-    data.discount && (data.price * (100 - data.discount)) / 100;
+  const discountedPrice = data.discount
+    ? (data.price * (100 - data.discount)) / 100
+    : data.price;
 
   return (
     <Stack
@@ -70,6 +71,9 @@ const ProductListOne: FC<Props> = ({ data }) => {
             color: "primary.main",
             lineHeight: "18.24px",
             letterSpacing: "1px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {data.title}
@@ -88,23 +92,26 @@ const ProductListOne: FC<Props> = ({ data }) => {
             4.7
           </Typography>
 
-          <Divider
-            orientation="vertical"
-            variant="middle"
-            flexItem
-            sx={{ backgroundColor: "secondary.700" }}
-          />
-
-          <Typography
-            sx={{
-              fontWeight: 500,
-              fontSize: "12px",
-              letterSpacing: "1px",
-              color: "error.main",
-            }}
-          >
-            -{data.discount}%
-          </Typography>
+          {data.discount ? (
+            <>
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{ backgroundColor: "secondary.700" }}
+              />
+              <Typography
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "12px",
+                  letterSpacing: "1px",
+                  color: "error.main",
+                }}
+              >
+                -{data.discount}%
+              </Typography>
+            </>
+          ) : null}
         </Stack>
 
         <Stack direction="row" spacing={0.65}>
@@ -117,32 +124,34 @@ const ProductListOne: FC<Props> = ({ data }) => {
           >
             {numberWithSpaces(discountedPrice)}тг
           </Typography>
-          <Typography
-            sx={{
-              alignSelf: "flex-end",
-              color: "info.400",
-              fontWeight: 300,
-              fontSize: "8px",
-              letterSpacing: "1px",
-              position: "relative",
+          {data.discount ? (
+            <Typography
+              sx={{
+                alignSelf: "flex-end",
+                color: "info.400",
+                fontWeight: 300,
+                fontSize: "8px",
+                letterSpacing: "1px",
+                position: "relative",
 
-              "&:after": {
-                content: '""',
-                position: "absolute",
-                width: "100%",
-                height: "1px",
-                backgroundColor: alpha(INFO[400], 0.7),
-                opacity: 0.8,
-                top: 0,
-                bottom: 0,
-                left: 0,
-                marginTop: "auto",
-                marginBottom: "auto",
-              },
-            }}
-          >
-            {data.discount && numberWithSpaces(data.price)}тг
-          </Typography>
+                "&:after": {
+                  content: '""',
+                  position: "absolute",
+                  width: "100%",
+                  height: "1px",
+                  backgroundColor: alpha(INFO[400], 0.7),
+                  opacity: 0.8,
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                },
+              }}
+            >
+              {numberWithSpaces(data.price)}тг
+            </Typography>
+          ) : null}
         </Stack>
       </Stack>
     </Stack>

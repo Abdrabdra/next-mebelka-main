@@ -42,6 +42,7 @@ const OneAnnounce = () => {
                 avgRating={data.status.avg}
                 discount={data.discount}
                 price={data.price}
+                description={data.description}
               />
               <AnnounceDescription />
               <AnnounceColors colors={data.colors} />

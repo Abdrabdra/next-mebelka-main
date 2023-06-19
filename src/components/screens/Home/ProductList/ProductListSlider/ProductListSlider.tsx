@@ -19,9 +19,10 @@ const ProductListSlider = () => {
   //   ...filterProductValues,
   // };
 
-  const { data, isLoading, isFetching, isSuccess } = useGetAnnouncementsQuery(
-    {}
-  );
+  const { data, isLoading, isFetching, isSuccess } = useGetAnnouncementsQuery({
+    page: 1,
+    limit: 20,
+  });
 
   const ref = useRef<any>();
   const [width, setWidth] = useState(0);

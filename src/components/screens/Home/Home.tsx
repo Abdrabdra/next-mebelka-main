@@ -12,8 +12,6 @@ const Home = () => {
         <Banner bannerTitle="Скидки и предложения" />
         <Categories />
 
-        <ProductList productTitle="Стулья" />
-        <ProductList productTitle="Диваны" />
         <ProductList productTitle="Освещение" />
       </Stack>
     </Container>

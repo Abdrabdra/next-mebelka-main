@@ -8,9 +8,16 @@ interface Props {
   avgRating: number;
   discount: number;
   price: number;
+  description: string;
 }
 
-const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
+const AnnounceInfo: FC<Props> = ({
+  title,
+  avgRating,
+  discount,
+  price,
+  description,
+}) => {
   const discountPrice = discount && (price * (100 - discount)) / 100;
 
   return (
@@ -28,7 +35,7 @@ const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
         {title}
       </Typography>
 
-      <Stack sx={{}}>asdasd</Stack>
+      <Stack sx={{}}>{description}</Stack>
 
       <Stack direction="row" alignItems={"center"} spacing={1}>
         <Icon component={StarRateIcon} />
@@ -40,18 +47,21 @@ const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
 
         <Divider variant="middle" orientation="vertical" flexItem />
 
-        <Typography
-          sx={{
-            fontSize: "16px",
-            fontWeight: 500,
-            letterSpacing: "1px",
-            color: "error.main",
-          }}
-        >
-          -{discount}%
-        </Typography>
-
-        <Divider variant="middle" orientation="vertical" flexItem />
+        {discount ? (
+          <>
+            <Typography
+              sx={{
+                fontSize: "16px",
+                fontWeight: 500,
+                letterSpacing: "1px",
+                color: "error.main",
+              }}
+            >
+              -{discount}%
+            </Typography>
+            <Divider variant="middle" orientation="vertical" flexItem />
+          </>
+        ) : null}
 
         <Typography
           sx={{
@@ -71,7 +81,7 @@ const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
         >
           {discount ? discountPrice : price}тг
         </Typography>
-        {discount && (
+        {discount ? (
           <Typography
             sx={{
               alignSelf: "flex-end",
@@ -98,7 +108,7 @@ const AnnounceInfo: FC<Props> = ({ title, avgRating, discount, price }) => {
           >
             {price}тг
           </Typography>
-        )}
+        ) : null}
       </Stack>
     </Stack>
   );
