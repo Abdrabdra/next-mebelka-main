@@ -49,7 +49,8 @@ const TopDrawerSecondary = () => {
     >
       {(router.pathname === "/application" ||
         router.pathname === "/category" ||
-        router.pathname === "/category/[id]") && (
+        router.pathname === "/category/[id]" ||
+        router.pathname === "/category/child/[id]") && (
         <Box sx={{ position: "absolute", left: 0 }}>
           <IconButton onClick={handleNavigate} sx={{ color: "common.black" }}>
             <ArrowBackIosRoundedIcon />
@@ -59,7 +60,8 @@ const TopDrawerSecondary = () => {
       <Typography sx={{ fontSize: "16px", letterSpacing: "1px" }}>
         {router.pathname === "/category"
           ? "Категории"
-          : router.pathname === "/category/[id]"
+          : router.pathname === "/category/[id]" ||
+            router.pathname === "/category/child/[id]"
           ? "Подкатегории"
           : router.pathname === "/search"
           ? "Поиск"

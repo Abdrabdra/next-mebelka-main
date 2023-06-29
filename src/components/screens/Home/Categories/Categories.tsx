@@ -6,41 +6,50 @@ import CountertopsIcon from "@mui/icons-material/Countertops";
 import CropLandscapeIcon from "@mui/icons-material/CropLandscape";
 import ScienceIcon from "@mui/icons-material/Science";
 import BedIcon from "@mui/icons-material/Bed";
+import { useRouter } from "next/router";
 
 const categories = [
   {
     id: 0,
     title: "Категории",
     icon: WindowIcon,
+    link: "/category",
   },
   {
     id: 1,
     title: "Освещение",
     icon: LightIcon,
+    link: "",
   },
   {
     id: 2,
     title: "Сантехника и климат",
     icon: CountertopsIcon,
+    link: "",
   },
   {
     id: 3,
     title: "Стены",
     icon: CropLandscapeIcon,
+    link: "",
   },
   {
     id: 4,
     title: "Декор",
     icon: ScienceIcon,
+    link: "",
   },
   {
     id: 5,
     title: "Мебель",
     icon: BedIcon,
+    link: "",
   },
 ];
 
 const Categories = () => {
+  const router = useRouter();
+
   return (
     <Stack direction={"row"} sx={{ flexWrap: "wrap", gap: "16px" }}>
       {categories.map((row) => (
@@ -52,6 +61,7 @@ const Categories = () => {
           }}
         >
           <Button
+            onClick={() => router.push(row.link)}
             key={row.id}
             sx={{
               backgroundColor: "secondary.main",

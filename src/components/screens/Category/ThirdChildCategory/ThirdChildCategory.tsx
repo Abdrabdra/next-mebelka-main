@@ -6,17 +6,17 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useGetCategoryQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
-import { useRouter } from "next/router";
-
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useDispatch } from "react-redux";
 import {
   setProductFilter,
   setProductFilterHelper,
 } from "@store/reducers/filter/productFilter/productFilter.slice";
+import { useGetCategoryQuery } from "@store/rtk-api/announcement-rtk/announcementEndpoints";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
-const CategoryChild = () => {
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+const ThirdChildCategory = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -28,7 +28,7 @@ const CategoryChild = () => {
     dispatch(setProductFilterHelper({ parentCategoryId: id }));
     dispatch(setProductFilter({ categoryId: childId }));
 
-    router.push(`/category/child/${childId}`);
+    router.push(`/search`);
   };
 
   return (
@@ -65,4 +65,4 @@ const CategoryChild = () => {
   );
 };
 
-export default CategoryChild;
+export default ThirdChildCategory;

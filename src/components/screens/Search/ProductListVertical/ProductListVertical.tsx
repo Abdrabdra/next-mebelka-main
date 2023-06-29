@@ -10,6 +10,7 @@ import mockPicture from "@assets/img/krovat_Olimpia.png";
 import { IAnnouncementsResponse } from "@src/types/Announcements/IAnnouncement";
 import { FC } from "react";
 import { $image_api } from "@api/index";
+import numberWithSpaces from "@utils/numberWithSpaces";
 
 interface Props {
   data: IAnnouncementsResponse;
@@ -44,12 +45,12 @@ const ProductListVertical: FC<Props> = ({ data }) => {
           <Image
             loader={
               row.images.length > 0
-                ? () => `${$image_api}/${row.images[0].imageUrl}`
+                ? () => `${$image_api}/${row.images[0]?.imageUrl}`
                 : undefined
             }
             src={
               row.images.length > 0
-                ? `${$image_api}/${row.images[0].imageUrl}`
+                ? `${$image_api}/${row.images[0]?.imageUrl}`
                 : ""
             }
             alt="Picture of the author"
@@ -67,12 +68,18 @@ const ProductListVertical: FC<Props> = ({ data }) => {
           <Stack spacing={1}>
             <Typography
               onClick={() => handleClick(row.id)}
-              sx={{ color: "primary.main", letterSpacing: "1px" }}
+              sx={{
+                color: "primary.main",
+                letterSpacing: "1px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
             >
               {row.title}
             </Typography>
 
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1} alignItems="center">
               <StarRoundedIcon sx={{ fontSize: "20px" }} />
               <Typography
                 sx={{
@@ -81,14 +88,22 @@ const ProductListVertical: FC<Props> = ({ data }) => {
                   fontWeight: 500,
                 }}
               >
-                ОЦЕНКА
+                {row.status.avg}
               </Typography>
-              <Divider orientation="vertical" flexItem variant={"middle"} />
-              <Typography
-                sx={{ color: "error.main", fontSize: "12px", fontWeight: 500 }}
-              >
-                -{row.discount}%
-              </Typography>
+              {row.discount ? (
+                <>
+                  <Divider orientation="vertical" flexItem variant={"middle"} />
+                  <Typography
+                    sx={{
+                      color: "error.main",
+                      fontSize: "12px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    -{row.discount}%
+                  </Typography>
+                </>
+              ) : null}
             </Stack>
           </Stack>
 
@@ -101,11 +116,13 @@ const ProductListVertical: FC<Props> = ({ data }) => {
               }}
             >
               {row.discount
-                ? discountPrice(row.price, row.discount)
-                : row.price}
+                ? numberWithSpaces(
+                    Number(discountPrice(row.price, row.discount))
+                  )
+                : numberWithSpaces(row.price)}
               тг
             </Typography>
-            {row.discount && (
+            {row.discount ? (
               <Typography
                 sx={{
                   alignSelf: "flex-end",
@@ -132,7 +149,7 @@ const ProductListVertical: FC<Props> = ({ data }) => {
               >
                 {row.price}тг
               </Typography>
-            )}
+            ) : null}
           </Stack>
         </Stack>
       ))}

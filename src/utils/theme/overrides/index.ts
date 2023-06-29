@@ -5,7 +5,7 @@ import Button from "./Button";
 import CssBaseline from "./CssBaseline";
 //
 import Input from "./Input";
-import Paper from "./Paper";
+import Stack from "./Stack";
 import SvgIcon from "./SvgIcon";
 import Accordion from "./Accordion";
 import Typography from "./Typography";
@@ -15,7 +15,7 @@ import MobileStepper from "./MobileStepper";
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
     Input(theme),
-    Paper(theme),
+    Stack(theme),
     Button(theme),
     Typography(theme),
     AppBar(theme),

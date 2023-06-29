@@ -12,36 +12,11 @@ import BedIcon from "@mui/icons-material/Bed";
 import StorefrontRoundedIcon from "@mui/icons-material/StorefrontRounded";
 
 const categories = [
-  {
-    id: 0,
-    title: "Категории",
-    icon: WindowIcon,
-  },
-  {
-    id: 1,
-    title: "Освещение",
-    icon: LightIcon,
-  },
-  {
-    id: 2,
-    title: "Сантехника и климат",
-    icon: CountertopsIcon,
-  },
-  {
-    id: 3,
-    title: "Стены",
-    icon: CropLandscapeIcon,
-  },
-  {
-    id: 4,
-    title: "Декор",
-    icon: ScienceIcon,
-  },
-  {
-    id: 5,
-    title: "Мебель",
-    icon: BedIcon,
-  },
+  // {
+  //   id: 0,
+  //   title: "Категории",
+  //   icon: WindowIcon,
+  // },
 ];
 
 const ContentCategories = () => {
@@ -57,15 +32,15 @@ const ContentCategories = () => {
 
   return (
     <Stack spacing={1.5}>
-      <Typography
+      {/* <Typography
         sx={{ color: "info.900", fontSize: "14px", letterSpacing: "1px" }}
       >
         Основные категории товаров
-      </Typography>
+      </Typography> */}
 
       <Stack spacing={2}>
         <>
-          {categories.map((row) => (
+          {/* {categories.map((row) => (
             <Button
               key={row.id}
               onClick={handleNavigate}
@@ -118,7 +93,7 @@ const ContentCategories = () => {
                 />
               </Stack>
             </Button>
-          ))}
+          ))} */}
           <Button
             onClick={handleApplication}
             sx={{

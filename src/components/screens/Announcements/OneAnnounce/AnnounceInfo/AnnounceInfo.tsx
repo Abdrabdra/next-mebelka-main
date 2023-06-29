@@ -2,6 +2,7 @@ import { alpha, Divider, Icon, Stack, Typography } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import { INFO } from "@utils/theme/palette";
 import { FC } from "react";
+import numberWithSpaces from "@utils/numberWithSpaces";
 
 interface Props {
   title: string;
@@ -79,7 +80,7 @@ const AnnounceInfo: FC<Props> = ({
         <Typography
           sx={{ fontWeight: 700, fontSize: "24px", letterSpacing: "1px" }}
         >
-          {discount ? discountPrice : price}тг
+          {numberWithSpaces(discount ? discountPrice : price)}тг
         </Typography>
         {discount ? (
           <Typography
@@ -106,7 +107,7 @@ const AnnounceInfo: FC<Props> = ({
               },
             }}
           >
-            {price}тг
+            {numberWithSpaces(price)}тг
           </Typography>
         ) : null}
       </Stack>

@@ -1,4 +1,4 @@
-import { Container, Stack } from "@mui/material";
+import { Container, Paper, Stack } from "@mui/material";
 import Image from "next/image";
 import AnnounceAmount from "./AnnounceAmount";
 import AnnounceColors from "./AnnounceColors";
@@ -25,6 +25,8 @@ const OneAnnounce = () => {
       {data && <AnnounceImage data={data.images} />}
 
       <Stack
+        component={Paper}
+        elevation={4}
         sx={{
           borderRadius: "20px 20px 0 0",
           backgroundColor: "common.white",
