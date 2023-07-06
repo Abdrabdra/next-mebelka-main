@@ -4,6 +4,6 @@ import { baseQuery, baseQueryWithReauth } from "../rtkApi";
 export default createApi({
   reducerPath: "applicationApi",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["application"],
+  tagTypes: ["application", "sms"],
   endpoints: () => ({}),
 });

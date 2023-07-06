@@ -1,5 +1,5 @@
 import { MainButton } from "@components/ui/Buttons";
-import { Paper, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 const AuthBox = () => {
@@ -14,10 +14,10 @@ const AuthBox = () => {
       alignItems={"center"}
       sx={{ height: "calc(100vh - 200px)" }}
     >
-      <Paper sx={{ width: "200px" }}>
+      <Box sx={{ width: "200px" }}>
         <Typography sx={{ textAlign: "center" }}>Нужна Авторизация</Typography>
         <MainButton onClick={handleClick}>Авторизоваться</MainButton>
-      </Paper>
+      </Box>
     </Stack>
   );
 };

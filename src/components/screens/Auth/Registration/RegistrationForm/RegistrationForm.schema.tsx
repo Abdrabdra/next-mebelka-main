@@ -7,5 +7,4 @@ export const RegistrationSchema = yup.object().shape({
   phone: yup
     .string()
     .matches(phoneRegExp, "Не правильный формат номера телефона"),
-  password: yup.string().required("Введите пароль"),
 });
