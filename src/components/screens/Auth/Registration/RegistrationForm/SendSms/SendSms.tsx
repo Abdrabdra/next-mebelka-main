@@ -30,7 +30,9 @@ const SendSms: React.FC<{
       setTimeout(() => {
         router.push("/auth/login");
       }, 2000);
-    } catch (e) {}
+    } catch (e) {
+        return null
+    }
   };
 
   const formik = useFormik({
