@@ -83,6 +83,7 @@ const RegistrationForm = () => {
                 </Typography>
                 <MainInput
                   name="password"
+                  type="password"
                   value={values.password}
                   onChange={handleChange}
                 />
