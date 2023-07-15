@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Button, IconButton, Stack } from "@mui/material";
+import { Box, Button, IconButton, Stack } from "@mui/material";
 
 import NotesIcon from "@mui/icons-material/Notes";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import DrawerMenu from "./DrawerMenu";
+import { useRouter } from "next/router";
 
 const TopDrawerMain = () => {
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = (value: boolean) => {
@@ -40,16 +43,37 @@ const TopDrawerMain = () => {
       </Stack>
 
       <Stack direction="row">
-        <IconButton sx={{ color: "common.black", fontWeight: 400 }}>
-          <FavoriteBorderIcon fontSize="small" sx={{ fontWeight: 400 }} />
+        <IconButton
+          onClick={() => router.push("/profile")}
+          sx={{ color: "common.black", fontWeight: 400, padding: 0 }}
+        >
+          <Box
+            component={"img"}
+            src={"/svg/favorite.svg"}
+            sx={{ width: "40px" }}
+          />
         </IconButton>
 
-        <IconButton sx={{ color: "common.black" }}>
-          <NotificationsNoneOutlinedIcon fontSize="small" />
+        <IconButton
+          onClick={() => router.push("/profile")}
+          sx={{ color: "common.black", padding: 0 }}
+        >
+          <Box
+            component={"img"}
+            src={"/svg/notification.svg"}
+            sx={{ width: "40px" }}
+          />
         </IconButton>
 
-        <IconButton sx={{ color: "common.black" }}>
-          <PermIdentityOutlinedIcon fontSize="small" />
+        <IconButton
+          onClick={() => router.push("/profile")}
+          sx={{ color: "common.black", padding: 0 }}
+        >
+          <Box
+            component={"img"}
+            src={"/svg/profile.svg"}
+            sx={{ width: "40px" }}
+          />
         </IconButton>
       </Stack>
     </Stack>
