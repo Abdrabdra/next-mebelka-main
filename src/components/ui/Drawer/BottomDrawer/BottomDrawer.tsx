@@ -1,4 +1,11 @@
-import { Container, Icon, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Icon,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { useRouter } from "next/router";
 import { routes } from "./links.const";
@@ -37,11 +44,13 @@ const BottomDrawer = () => {
           {routes.map((row) => (
             <Stack key={row.id}>
               <IconButton key={row.id} onClick={() => handleClick(row.route)}>
-                <Icon
-                  component={
-                    router.pathname === row.route ? row.iconFocused : row.icon
-                  }
+                <Box
+                  component="img"
+                  src={row.icon}
                   sx={{
+                    width: "35px",
+                    height: "35px",
+                    objectFit: "cover",
                     color:
                       router.pathname === row.route
                         ? "secondary.500"
