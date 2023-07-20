@@ -23,12 +23,12 @@ const Login = () => {
           justifyContent="center"
           sx={{ height: "100vh" }}
         >
-          <Box
+          {/* <Box
             component="img"
-            alt="iSandyq"
+            alt="Loom"
             src={"/svg/iSandyq.svg"}
             sx={{ mb: "62px" }}
-          />
+          /> */}
           <Typography
             sx={{
               fontWeight: 400,
@@ -37,7 +37,7 @@ const Login = () => {
               mb: "40px",
             }}
           >
-            Добро пожаловать в <b>iSandyq</b>
+            Добро пожаловать в <b>Loom</b>
           </Typography>
 
           <LoginForm />
