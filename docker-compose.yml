@@ -16,6 +16,7 @@ services:
     - "80:80"
     - "443:443"
     volumes:
+    - certbot:/var/www/certbot
     - ./nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
     - www-html:/var/www/html
     - etc-letsencrypt:/etc/letsencrypt
@@ -27,6 +28,7 @@ services:
     depends_on:
       - nginx
     volumes:
+      - certbot:/var/www/certbot
       - www-html:/var/www/html
       - etc-letsencrypt:/etc/letsencrypt
     command: certonly --webroot --webroot-path=/var/www/html --email almas.zhumakhanov.2002a@gmail.com  --agree-tos --no-eff-email -d loom.kz
