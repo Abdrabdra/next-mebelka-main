@@ -9,7 +9,6 @@ server {
         allow all;
         root /var/www/html;
     }
-    return 301 https://loom.kz$request_uri;
 }
 
 
