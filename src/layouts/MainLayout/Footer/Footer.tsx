@@ -36,8 +36,8 @@ const Footer: React.FC<{ forOnePage?: boolean }> = ({ forOnePage }) => {
     >
       <Container>
         <Stack sx={{ color: "common.white" }}>
-          {footerLinks.map((row) => (
-            <HoverText text={row.title} link={row.link} />
+          {footerLinks.map((row, index) => (
+            <HoverText key={index} text={row.title} link={row.link} />
           ))}
         </Stack>
       </Container>
