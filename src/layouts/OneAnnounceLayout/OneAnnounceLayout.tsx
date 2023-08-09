@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import Footer from "@layouts/MainLayout/Footer";
 
 interface Props {
   children: React.ReactNode;
@@ -37,6 +38,7 @@ const OneAnnounceLayout: FC<Props> = ({ children }) => {
         </Button>
       </Container>
       {children}
+      <Footer forOnePage />
     </Box>
   );
 };

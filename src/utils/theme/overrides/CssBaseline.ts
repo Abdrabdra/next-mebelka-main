@@ -17,6 +17,7 @@ export default function CssBaseline(theme: Theme) {
         body: {
           width: "100%",
           height: "100%",
+          minHeight: "100vh",
         },
         a: {
           color: theme.palette.primary.main,

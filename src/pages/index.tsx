@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 export default function HomePage() {
   return (
-    <MainLayout>
+    <MainLayout withFooter>
       <Home />
     </MainLayout>
   );

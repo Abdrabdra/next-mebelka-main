@@ -6,7 +6,7 @@ export default function Container(theme: Theme) {
       styleOverrides: {
         root: {
           // backgroundImage: 'none'
-          maxWidth: "1536px !important",
+          // maxWidth: "1536px",
         },
       },
     },

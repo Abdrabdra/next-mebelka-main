@@ -1,3 +1,4 @@
+import Footer from "@layouts/MainLayout/Footer";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { useTypedSelector } from "@store/index";
 import { useRouter } from "next/router";
@@ -43,6 +44,7 @@ const Login = () => {
           <LoginForm />
         </Stack>
       </Container>
+      <Footer />
     </Stack>
   );
 };

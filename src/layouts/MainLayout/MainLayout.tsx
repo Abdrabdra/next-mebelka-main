@@ -1,20 +1,29 @@
 import { FC } from "react";
 
 import { BottomDrawer, TopDrawer } from "@components/ui/Drawer";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import Footer from "./Footer";
 
 interface Props {
   isBack?: boolean;
   children: React.ReactNode;
+  withFooter?: boolean;
 }
 
-const MainLayout: FC<Props> = ({ isBack, children }) => {
+const MainLayout: FC<Props> = ({ isBack, children, withFooter }) => {
   return (
-    <Box sx={{ paddingTop: "80px", paddingBottom: "84px" }}>
+    <Stack justifyContent="space-between"
+      sx={{
+        paddingTop: "80px",
+        paddingBottom: withFooter ? null : "84px",
+        minHeight: "100vh",
+      }}
+    >
       <TopDrawer isBack={isBack ? true : false} />
       {children}
+      {withFooter && <Footer />}
       {!isBack && <BottomDrawer />}
-    </Box>
+    </Stack>
   );
 };
 

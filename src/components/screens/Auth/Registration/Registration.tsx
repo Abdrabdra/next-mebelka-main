@@ -1,3 +1,4 @@
+import Footer from "@layouts/MainLayout/Footer";
 import { Box, Container, Typography } from "@mui/material";
 import { Stack } from "@mui/material";
 import RegistrationForm from "./RegistrationForm";
@@ -31,6 +32,7 @@ const Registration = () => {
           <RegistrationForm />
         </Stack>
       </Container>
+      <Footer />
     </Stack>
   );
 };

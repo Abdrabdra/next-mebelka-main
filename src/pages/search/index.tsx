@@ -3,7 +3,7 @@ import { MainLayout } from "@layouts/MainLayout";
 
 const SearchPage = () => {
   return (
-    <MainLayout>
+    <MainLayout withFooter>
       <Search />
     </MainLayout>
   );
