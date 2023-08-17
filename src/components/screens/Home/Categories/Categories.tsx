@@ -30,7 +30,7 @@ const Categories = () => {
         "Ошибка"
       ) : isSuccess ? (
         <>
-          <Stack
+          {/* <Stack
             spacing={1}
             sx={{
               flex: "1 1 calc(33.333% - 16px * 2 / 3)",
@@ -70,7 +70,7 @@ const Categories = () => {
             >
               {category.title}
             </Typography>
-          </Stack>
+          </Stack> */}
 
           {data.data.map((row) => (
             <Stack
