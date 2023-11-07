@@ -31,6 +31,7 @@ const ProductListVertical: FC<Props> = ({ data }) => {
     <Stack direction="row" sx={{ gap: "12px", flexWrap: "wrap" }}>
       {data.data.map((row) => (
         <Stack
+          onClick={() => handleClick(row.id)}
           key={row.id}
           spacing={1.5}
           sx={{
@@ -40,6 +41,9 @@ const ProductListVertical: FC<Props> = ({ data }) => {
             borderRadius: "20px",
             backgroundColor: "secondary.main",
             padding: "12px",
+            "&:hover": {
+              cursor: "pointer",
+            },
           }}
         >
           <Image
@@ -67,7 +71,6 @@ const ProductListVertical: FC<Props> = ({ data }) => {
 
           <Stack spacing={1}>
             <Typography
-              onClick={() => handleClick(row.id)}
               sx={{
                 color: "primary.main",
                 letterSpacing: "1px",

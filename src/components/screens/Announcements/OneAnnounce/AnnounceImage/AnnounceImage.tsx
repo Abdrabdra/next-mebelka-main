@@ -13,7 +13,7 @@ interface Props {
 
 const AnnounceImage: FC<Props> = ({ data }) => {
   return (
-    <Stack sx={{ height: "350px", backgroundColor: "secondary.main" }}>
+    <Stack sx={{ height: "350px", backgroundColor: "commmon.white" }}>
       <ImageSlider data={data} />
     </Stack>
   );

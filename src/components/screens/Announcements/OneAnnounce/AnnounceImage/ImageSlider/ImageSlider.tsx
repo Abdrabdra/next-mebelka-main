@@ -33,7 +33,7 @@ const ImageSlider: FC<Props> = ({ data }) => {
               style={{
                 width: "100%",
                 backgroundRepeat: "no-repeat",
-                objectFit: "cover",
+                objectFit: "contain",
                 objectPosition: "center",
               }}
               alt={"Product"}

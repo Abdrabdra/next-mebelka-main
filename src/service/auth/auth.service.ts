@@ -22,7 +22,6 @@ export class AuthService {
   static async logout(): Promise<AxiosResponse<ILoginResponse>> {
     return $api.get(`auth/logout`);
   }
-
   // static async logout(): Promise<AxiosResponse<ILoginResponse>> {
   //   return axios.get(`${DEV_API}auth/logout`, { withCredentials: true });
   // }
