@@ -79,7 +79,7 @@ const AnnounceFooterBasket: FC<Props> = ({ productId }) => {
       sx={{
         position: "fixed",
         bottom: 0,
-        zIndex: 99999999,
+        zIndex: 1290,
         backgroundColor: "common.white",
         borderRadius: "20px 20px 0 0",
         padding: "16px",

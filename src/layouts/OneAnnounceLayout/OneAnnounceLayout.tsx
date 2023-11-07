@@ -24,7 +24,7 @@ const OneAnnounceLayout: FC<Props> = ({ children }) => {
           sx={{
             top: "12px",
             position: "fixed",
-            zIndex: "9999999999",
+            zIndex: "1290",
             backgroundColor: "common.white",
             minWidth: "42px",
             width: "42px",
